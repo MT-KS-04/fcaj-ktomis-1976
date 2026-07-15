@@ -20,4 +20,4 @@ In this workshop, you will build the **SmartMenu** system using a Serverless arc
 - **Database:** Amazon DynamoDB stores menu and order data with high performance and low latency.
 - **AI Integration:** Amazon Bedrock is used to connect with Foundation Models to power automated translation and food recommendations.
 
-![overview](/images/5-Workshop/5.1-Workshop-overview/smartmenu_architecture.png)
+![overview]({{< baseurl >}}images/5-Workshop/5.1-Workshop-overview/smartmenu_architecture.png)

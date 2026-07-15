@@ -264,23 +264,23 @@ dist/tablet/index.html  + assets/
 ### Bước 1C.1 — Tạo S3 Bucket cho Ảnh
 1. Truy cập AWS Console, tìm kiếm và chọn dịch vụ **S3**.
 2. Nhấn nút **Create bucket**.
-   ![S3 List](/images/5-Workshop/5.2-Prerequisite/s3_list.png)
+   ![S3 List]({{< baseurl >}}images/5-Workshop/5.2-Prerequisite/s3_list.png)
 3. Cấu hình thông tin Bucket:
    - **Bucket name:** Nhập tên duy nhất toàn cầu, ví dụ: `smartmenu-assets-2026`.
    - **AWS Region:** Chọn **Asia Pacific (Singapore) ap-southeast-1** (hoặc region bạn mong muốn).
-   ![S3 Create Settings](/images/5-Workshop/5.2-Prerequisite/s3_create.png)
+   ![S3 Create Settings]({{< baseurl >}}images/5-Workshop/5.2-Prerequisite/s3_create.png)
 4. Cấu hình Quyền truy cập công khai:
    - Cuộn xuống phần **Block Public Access settings for this bucket**.
    - Bỏ tích chọn **Block all public access** (Cho phép truy cập công khai).
    - Tích chọn hộp thoại xác nhận **I acknowledge that the current settings might result in this bucket and the objects within becoming public**.
-   ![S3 Public Access](/images/5-Workshop/5.2-Prerequisite/s3_public_access.png)
+   ![S3 Public Access]({{< baseurl >}}images/5-Workshop/5.2-Prerequisite/s3_public_access.png)
 5. Nhấn **Create bucket** ở cuối trang. Bạn sẽ thấy thông báo tạo bucket thành công.
-   ![S3 Created](/images/5-Workshop/5.2-Prerequisite/s3_created.png)
+   ![S3 Created]({{< baseurl >}}images/5-Workshop/5.2-Prerequisite/s3_created.png)
 
 ### Bước 1C.2 — Cấu hình Bucket Policy (Cho phép Đọc công khai)
 1. Chọn bucket vừa tạo từ danh sách, chọn tab **Permissions**.
 2. Cuộn xuống mục **Bucket policy**, nhấn **Edit**.
-   ![S3 Policy Edit](/images/5-Workshop/5.2-Prerequisite/s3_policy_edit.png)
+   ![S3 Policy Edit]({{< baseurl >}}images/5-Workshop/5.2-Prerequisite/s3_policy_edit.png)
 3. Dán đoạn JSON sau vào Policy Editor để cho phép mọi người đọc ảnh từ bucket (thay thế `smartmenu-assets-2026` bằng tên bucket của bạn):
    ```json
    {
@@ -296,6 +296,6 @@ dist/tablet/index.html  + assets/
        ]
    }
    ```
-   ![S3 Policy JSON](/images/5-Workshop/5.2-Prerequisite/s3_policy_json.png)
+   ![S3 Policy JSON]({{< baseurl >}}images/5-Workshop/5.2-Prerequisite/s3_policy_json.png)
 4. Nhấn **Save changes**. Trạng thái bucket sẽ chuyển sang **Public**.
-   ![S3 Policy Success](/images/5-Workshop/5.2-Prerequisite/s3_policy_success.png)
+   ![S3 Policy Success]({{< baseurl >}}images/5-Workshop/5.2-Prerequisite/s3_policy_success.png)

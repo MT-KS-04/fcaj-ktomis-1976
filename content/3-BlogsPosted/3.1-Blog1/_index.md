@@ -26,7 +26,7 @@ This is precisely why AWS developed Amazon GameLift Servers—to help game studi
 
 The basic architecture and connection workflow of GameLift can be described as follows:
 
-![Amazon GameLift Architecture](/images/3-BlogsPosted/blog1.png)
+![Amazon GameLift Architecture]({{< baseurl >}}images/3-BlogsPosted/blog1.png)
 
 **The connection workflow is as follows:**
 

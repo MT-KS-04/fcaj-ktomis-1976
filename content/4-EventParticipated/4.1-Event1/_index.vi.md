@@ -119,8 +119,8 @@ Giao lưu với các kỹ sư từ GoTymeX, Cloud Kinetics và VPBank cũng mang
 
 ## 8. Hình Ảnh Sự Kiện
 
-![Tham dự FCAJ Community Day cùng các bạn](/images/event_1/event_1_1.jpg)
+![Tham dự FCAJ Community Day cùng các bạn]({{< baseurl >}}images/event_1/event_1_1.jpg)
 
-![Workshop exercises tại sự kiện – MCP Integration và Terraform Deployment](/images/event_1/event_1_2.jpg)
+![Workshop exercises tại sự kiện – MCP Integration và Terraform Deployment]({{< baseurl >}}images/event_1/event_1_2.jpg)
 
 > **Tổng thể**, FCAJ Community Day 23/5/2026 không chỉ cung cấp kiến thức kỹ thuật chuyên sâu về AI và AWS mà còn giúp tôi định hình rõ hơn tư duy phát triển sản phẩm, rèn luyện kỹ năng làm việc nhóm dưới áp lực và tiếp cận thực tiễn hơn với các công nghệ mới nhất trong ngành.

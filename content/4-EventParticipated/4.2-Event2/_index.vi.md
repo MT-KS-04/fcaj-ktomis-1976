@@ -117,10 +117,10 @@ Giao lưu sau sự kiện cũng mang lại nhiều góc nhìn thực tế về t
 
 ## 8. Hình Ảnh Sự Kiện
 
-![Chụp ảnh cùng các bạn tại FCAJ Community Day 27/6/2026](/images/event_2/event_2_1.jpg)
+![Chụp ảnh cùng các bạn tại FCAJ Community Day 27/6/2026]({{< baseurl >}}images/event_2/event_2_1.jpg)
 
-![Nhat Tran – CTO CloudThinker trình bày về AgenticOps for your Cloud](/images/event_2/event_2_2.jpg)
+![Nhat Tran – CTO CloudThinker trình bày về AgenticOps for your Cloud]({{< baseurl >}}images/event_2/event_2_2.jpg)
 
-![Hội trường sự kiện – phần trình bày về Revve AI](/images/event_2/event_2_3.jpg)
+![Hội trường sự kiện – phần trình bày về Revve AI]({{< baseurl >}}images/event_2/event_2_3.jpg)
 
 > **Tổng thể**, FCAJ Community Day 27/6/2026 giúp tôi có cái nhìn thực tế và đa chiều hơn về cách AI đang được tích hợp vào doanh nghiệp – từ Voice AI, DevOps Agent đến Amazon Q với bảo mật cloud. Đây là nguồn cảm hứng lớn để tôi tiếp tục học sâu hơn và định hướng rõ hơn cho con đường phát triển trong lĩnh vực cloud và AI.

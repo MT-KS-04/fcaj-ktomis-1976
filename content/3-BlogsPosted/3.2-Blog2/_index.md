@@ -28,7 +28,7 @@ The operations of CloudWatch revolve around three main pillars:
 
 For multiplayer games, combining Amazon CloudWatch helps monitor game server health in real time. Key metrics commonly observed include:
 
-![Amazon CloudWatch Dashboard](/images/3-BlogsPosted/blog2.png)
+![Amazon CloudWatch Dashboard]({{< baseurl >}}images/3-BlogsPosted/blog2.png)
 
 1. **CPU Utilization:** Ensures the game server does not lag due to heavy game loop calculations.
 2. **Memory Usage:** Detects memory leaks in the game server codebase.

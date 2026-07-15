@@ -264,23 +264,23 @@ To enable the application to display and upload menu images, we need to prepare 
 ### Step 1C.1 — Create S3 Bucket for Assets
 1. Access the AWS Console, search for and select **S3**.
 2. Click the **Create bucket** button.
-   ![S3 List](/images/5-Workshop/5.2-Prerequisite/s3_list.png)
+   ![S3 List]({{< baseurl >}}images/5-Workshop/5.2-Prerequisite/s3_list.png)
 3. Configure Bucket Information:
    - **Bucket name:** Enter a globally unique name, e.g., `smartmenu-assets-2026`.
    - **AWS Region:** Select **Asia Pacific (Singapore) ap-southeast-1** (or your preferred region).
-   ![S3 Create Settings](/images/5-Workshop/5.2-Prerequisite/s3_create.png)
+   ![S3 Create Settings]({{< baseurl >}}images/5-Workshop/5.2-Prerequisite/s3_create.png)
 4. Configure Public Access Settings:
    - Scroll down to the **Block Public Access settings for this bucket** section.
    - Uncheck **Block all public access**.
    - Check the acknowledgement box: **I acknowledge that the current settings might result in this bucket and the objects within becoming public**.
-   ![S3 Public Access](/images/5-Workshop/5.2-Prerequisite/s3_public_access.png)
+   ![S3 Public Access]({{< baseurl >}}images/5-Workshop/5.2-Prerequisite/s3_public_access.png)
 5. Click **Create bucket at the bottom of the page. You will see a success message.
-   ![S3 Created](/images/5-Workshop/5.2-Prerequisite/s3_created.png)
+   ![S3 Created]({{< baseurl >}}images/5-Workshop/5.2-Prerequisite/s3_created.png)
 
 ### Step 1C.2 — Configure Bucket Policy (Allow Public Read)
 1. Select your newly created bucket, go to the **Permissions** tab.
 2. Scroll down to the **Bucket policy** section, click **Edit**.
-   ![S3 Policy Edit](/images/5-Workshop/5.2-Prerequisite/s3_policy_edit.png)
+   ![S3 Policy Edit]({{< baseurl >}}images/5-Workshop/5.2-Prerequisite/s3_policy_edit.png)
 3. Paste the following JSON policy into the Policy Editor to allow public read access (replace `smartmenu-assets-2026` with your actual bucket name):
    ```json
    {
@@ -296,6 +296,6 @@ To enable the application to display and upload menu images, we need to prepare 
        ]
    }
    ```
-   ![S3 Policy JSON](/images/5-Workshop/5.2-Prerequisite/s3_policy_json.png)
+   ![S3 Policy JSON]({{< baseurl >}}images/5-Workshop/5.2-Prerequisite/s3_policy_json.png)
 4. Click **Save changes**. The bucket status will now display as **Public**.
-   ![S3 Policy Success](/images/5-Workshop/5.2-Prerequisite/s3_policy_success.png)
+   ![S3 Policy Success]({{< baseurl >}}images/5-Workshop/5.2-Prerequisite/s3_policy_success.png)

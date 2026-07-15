@@ -28,7 +28,7 @@ Hoạt động của CloudWatch xoay quanh ba trụ cột chính:
 
 Đối với các game nhiều người chơi (multiplayer), việc kết hợp Amazon CloudWatch giúp giám sát sức khỏe của máy chủ game theo thời gian thực. Các chỉ số quan trọng thường được giám sát bao gồm:
 
-![Amazon CloudWatch Dashboard](/images/3-BlogsPosted/blog2.png)
+![Amazon CloudWatch Dashboard]({{< baseurl >}}images/3-BlogsPosted/blog2.png)
 
 1. **CPU Utilization:** Đảm bảo game server không bị giật lag do xử lý logic game quá tải.
 2. **Memory Usage:** Phát hiện lỗi rò rỉ bộ nhớ (memory leaks) của mã nguồn game.

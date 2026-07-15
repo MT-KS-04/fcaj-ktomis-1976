@@ -117,10 +117,10 @@ Networking after the event also brought many practical insights about the curren
 
 ## 8. Event Photos
 
-![Group photo at FCAJ Community Day – June 27, 2026](/images/event_2/event_2_1.jpg)
+![Group photo at FCAJ Community Day – June 27, 2026]({{< baseurl >}}images/event_2/event_2_1.jpg)
 
-![Nhat Tran – CTO of CloudThinker presenting on AgenticOps for your Cloud](/images/event_2/event_2_2.jpg)
+![Nhat Tran – CTO of CloudThinker presenting on AgenticOps for your Cloud]({{< baseurl >}}images/event_2/event_2_2.jpg)
 
-![Event hall – presentation by Revve AI](/images/event_2/event_2_3.jpg)
+![Event hall – presentation by Revve AI]({{< baseurl >}}images/event_2/event_2_3.jpg)
 
 > **Overall**, FCAJ Community Day – June 27, 2026 gave me a practical and multi-dimensional view of how AI is being integrated into enterprise environments — from Voice AI and DevOps Agents to Amazon Q with cloud security. It was a major source of inspiration to continue learning deeply and to define a clearer direction for my career in cloud and AI.

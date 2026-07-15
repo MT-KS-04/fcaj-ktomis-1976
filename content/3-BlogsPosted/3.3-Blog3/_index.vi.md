@@ -22,7 +22,7 @@ S3 Lifecycle hoạt động dựa trên các quy tắc (Rules) cấu hình mốc
 
 Ví dụ về một quy trình tự động hóa vòng đời lưu trữ điển hình:
 
-![Amazon S3 Lifecycle Process](/images/3-BlogsPosted/blog3.png)
+![Amazon S3 Lifecycle Process]({{< baseurl >}}images/3-BlogsPosted/blog3.png)
 
 - **30 ngày đầu:** Đối tượng được lưu trên lớp **Amazon S3 Standard** để đảm bảo hiệu năng tối đa cho người chơi và nhà phát triển.
 - **Sau 30 ngày:** Đối tượng tự động chuyển sang **S3 Standard-IA (Infrequent Access)** vì tần suất truy cập giảm.

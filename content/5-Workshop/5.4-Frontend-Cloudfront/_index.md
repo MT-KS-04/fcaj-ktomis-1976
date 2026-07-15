@@ -20,7 +20,7 @@ Now that our IAM credentials are ready, we will create an Amazon S3 Bucket to ho
    - **Bucket namespace:** `Account Regional namespace` (recommended)
    - **Bucket name prefix:** `smartmenu-fe-prod`
 3. Click **Create bucket**.
-![Create S3 Bucket](/images/5-Workshop/5.3-IAM-Uploader/s3_create_bucket.png)
+![Create S3 Bucket]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/s3_create_bucket.png)
 
 ### Step 3A.2 — Configure AWS CLI on Local Machine
 To upload the files from your local terminal:
@@ -53,10 +53,10 @@ Since the project has multiple folders (`landing`, `owner`, `tablet`), we build 
    ```bash
    aws s3 sync dist/tablet s3://<your-bucket-name>/tablet/ --delete
    ```
-![S3 Sync Terminal](/images/5-Workshop/5.3-IAM-Uploader/s3_sync_terminal.png)
+![S3 Sync Terminal]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/s3_sync_terminal.png)
 
 Verify that the files and folders are structured correctly in your S3 bucket console:
-![S3 Bucket Objects](/images/5-Workshop/5.3-IAM-Uploader/s3_bucket_objects.png)
+![S3 Bucket Objects]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/s3_bucket_objects.png)
 
 ### Step 3A.4 — Configure Bucket Policy
 To allow public read access to the objects:
@@ -77,7 +77,7 @@ To allow public read access to the objects:
    }
    ```
 3. Click **Save changes**.
-![S3 Bucket Policy](/images/5-Workshop/5.3-IAM-Uploader/s3_bucket_policy.png)
+![S3 Bucket Policy]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/s3_bucket_policy.png)
 
 ---
 
@@ -88,35 +88,35 @@ To secure our origin, speed up asset delivery, and serve frontend/backend from a
 ### Step 3B.1 — Create CloudFront Distribution
 1. Search for **CloudFront** in the AWS Console, click **Distributions**, then click **Create distribution**.
 2. On the **Choose a plan** page, select the **Free ($0/month)** option and click **Next**.
-![CloudFront Choose Plan](/images/5-Workshop/5.3-IAM-Uploader/cf_choose_plan.png)
+![CloudFront Choose Plan]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_choose_plan.png)
 
 ### Step 3B.2 — Set Distribution General Options
 1. Under **Get started**:
    - **Distribution name:** `smartmenu`
    - **Distribution type:** `Single website or app`
 2. Click **Next**.
-![CloudFront Get Started](/images/5-Workshop/5.3-IAM-Uploader/cf_get_started.png)
+![CloudFront Get Started]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_get_started.png)
 
 ### Step 3B.3 — Specify Origin
 1. For **Origin domain**, click **Browse S3** and select the S3 bucket we just created (`smartmenu-fe-prod`).
 2. Make sure **Allow private S3 bucket access to CloudFront** is checked (Recommended) and **Use recommended origin settings** is selected.
-![CloudFront Select S3 Origin](/images/5-Workshop/5.3-IAM-Uploader/cf_select_s3.png)
+![CloudFront Select S3 Origin]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_select_s3.png)
 
 ### Step 3B.4 — Configure Security & Review
 1. Under **Enable security**, ensure WAF protections are enabled to protect your web application from common vulnerabilities.
-![CloudFront Enable Security](/images/5-Workshop/5.3-IAM-Uploader/cf_enable_security.png)
+![CloudFront Enable Security]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_enable_security.png)
 2. On the **Review and create** page, verify all settings:
    - **S3 origin:** `smartmenu-fe-prod.s3.ap-southeast-1.amazonaws.com`
    - **Grant CloudFront access to origin:** `Yes`
    - **Enable Origin Shield:** `No`
 3. Click **Create distribution**.
-![CloudFront Review Create](/images/5-Workshop/5.3-IAM-Uploader/cf_review_create.png)
+![CloudFront Review Create]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_review_create.png)
 
 ### Step 3B.5 — Configure Default Root Object
 1. Once the distribution is created, click on it, and click **Edit** under **General Settings**.
 2. Scroll down to find the **Default root object** field and enter `index.html`.
 3. Save changes.
-![CloudFront Edit Settings](/images/5-Workshop/5.3-IAM-Uploader/cf_edit_settings.png)
+![CloudFront Edit Settings]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_edit_settings.png)
 
 ---
 
@@ -130,7 +130,7 @@ To route API requests from the frontend to our serverless backend, we need to ad
    - Format: `lmczvvnxz4nqmcu6settpg2uxm0palnw.lambda-url.us-east-1.on.aws` (use your actual Lambda function URL without `https://`).
 3. Set **Protocol** to `HTTPS only` and **Minimum Origin SSL protocol** to `TLSv1.2`.
 4. Click **Create origin**.
-![CloudFront Create Origin Lambda](/images/5-Workshop/5.3-IAM-Uploader/cf_create_origin_lambda.png)
+![CloudFront Create Origin Lambda]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_create_origin_lambda.png)
 
 ### Step 3C.2 — Create Behavior for Backend Routing (`/api/*`)
 1. Go to the **Behaviors** tab and click **Create behavior**.
@@ -142,7 +142,7 @@ To route API requests from the frontend to our serverless backend, we need to ad
    - **Cache policy:** `CachingDisabled`
    - **Origin request policy:** `AllViewerExceptHostHeader`
 3. Click **Create behavior**.
-![CloudFront Create Behavior](/images/5-Workshop/5.3-IAM-Uploader/cf_create_behavior.png)
+![CloudFront Create Behavior]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_create_behavior.png)
 
 ---
 
@@ -156,7 +156,7 @@ Because we have a Single Page Application (SPA) with path-based routing (e.g., `
    - **Name:** `spa-rewrite`
    - **Runtime:** `cloudfront-js-2.0`
 3. Click **Create function**.
-![CloudFront Create Function](/images/5-Workshop/5.3-IAM-Uploader/cf_create_function.png)
+![CloudFront Create Function]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_create_function.png)
 
 ### Step 3D.2 — Write URL Rewrite Code
 1. In the **Function code** editor under the **Development** tab, paste the following JS router script:
@@ -180,17 +180,17 @@ Because we have a Single Page Application (SPA) with path-based routing (e.g., `
    }
    ```
 2. Click **Save changes**.
-![CloudFront Function Code](/images/5-Workshop/5.3-IAM-Uploader/cf_function_code.png)
+![CloudFront Function Code]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_function_code.png)
 
 ### Step 3D.3 — Publish and Associate Function
 1. Switch to the **Publish** tab and click **Publish function**.
-![CloudFront Publish Function](/images/5-Workshop/5.3-IAM-Uploader/cf_publish_function.png)
+![CloudFront Publish Function]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_publish_function.png)
 2. Scroll down to **Function associations**, and configure the association:
    - **Event type:** `Viewer request`
    - **Function type:** `CloudFront Functions`
    - **Function name:** `spa-rewrite`
 3. Save changes. This will apply the rewrite logic to requests arriving at the default cache behavior.
-![CloudFront Function Association](/images/5-Workshop/5.3-IAM-Uploader/cf_function_association.png)
+![CloudFront Function Association]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_function_association.png)
 
 ---
 

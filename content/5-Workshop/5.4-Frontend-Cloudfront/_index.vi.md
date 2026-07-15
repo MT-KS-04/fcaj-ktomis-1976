@@ -20,7 +20,7 @@ Khi thông tin đăng nhập IAM đã sẵn sàng, chúng ta sẽ tạo một Am
    - **Bucket namespace:** `Account Regional namespace` (khuyến nghị)
    - **Bucket name prefix:** `smartmenu-fe-prod`
 3. Nhấn **Create bucket**.
-![Create S3 Bucket](/images/5-Workshop/5.3-IAM-Uploader/s3_create_bucket.png)
+![Create S3 Bucket]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/s3_create_bucket.png)
 
 ### Bước 3A.2 — Cấu hình AWS CLI trên Máy cục bộ
 Để tải các tệp tin lên S3 từ máy tính cá nhân:
@@ -53,10 +53,10 @@ Vì dự án có nhiều thư mục (`landing`, `owner`, `tablet`), chúng ta bu
    ```bash
    aws s3 sync dist/tablet s3://<tên-bucket-của-bạn>/tablet/ --delete
    ```
-![S3 Sync Terminal](/images/5-Workshop/5.3-IAM-Uploader/s3_sync_terminal.png)
+![S3 Sync Terminal]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/s3_sync_terminal.png)
 
 Kiểm tra lại cấu trúc thư mục trên giao diện điều khiển S3:
-![S3 Bucket Objects](/images/5-Workshop/5.3-IAM-Uploader/s3_bucket_objects.png)
+![S3 Bucket Objects]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/s3_bucket_objects.png)
 
 ### Bước 3A.4 — Cấu hình Bucket Policy
 Để cho phép truy cập đọc công khai các đối tượng trong bucket:
@@ -77,7 +77,7 @@ Kiểm tra lại cấu trúc thư mục trên giao diện điều khiển S3:
    }
    ```
 3. Nhấn **Save changes**.
-![S3 Bucket Policy](/images/5-Workshop/5.3-IAM-Uploader/s3_bucket_policy.png)
+![S3 Bucket Policy]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/s3_bucket_policy.png)
 
 ---
 
@@ -88,35 +88,35 @@ Kiểm tra lại cấu trúc thư mục trên giao diện điều khiển S3:
 ### Bước 3B.1 — Tạo CloudFront Distribution
 1. Tìm kiếm **CloudFront** trên AWS Console, nhấn **Distributions** và chọn **Create distribution**.
 2. Tại màn hình **Choose a plan**, chọn gói **Free ($0/month)** và nhấn **Next**.
-![CloudFront Choose Plan](/images/5-Workshop/5.3-IAM-Uploader/cf_choose_plan.png)
+![CloudFront Choose Plan]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_choose_plan.png)
 
 ### Bước 3B.2 — Thiết lập Cấu hình Chung
 1. Ở phần **Get started**:
    - **Distribution name:** `smartmenu`
    - **Distribution type:** `Single website or app`
 2. Nhấn **Next**.
-![CloudFront Get Started](/images/5-Workshop/5.3-IAM-Uploader/cf_get_started.png)
+![CloudFront Get Started]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_get_started.png)
 
 ### Bước 3B.3 — Chọn Origin
 1. Đối với **Origin domain**, nhấn **Browse S3** và chọn S3 bucket vừa tạo (`smartmenu-fe-prod`).
 2. Hãy đảm bảo mục **Allow private S3 bucket access to CloudFront** được chọn (Khuyến nghị) và mục **Use recommended origin settings** được kích hoạt.
-![CloudFront Select S3 Origin](/images/5-Workshop/5.3-IAM-Uploader/cf_select_s3.png)
+![CloudFront Select S3 Origin]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_select_s3.png)
 
 ### Bước 3B.4 — Cấu hình Security & Kiểm tra lại
 1. Tại phần **Enable security**, đảm bảo các chức năng bảo vệ của WAF đã được bật nhằm ngăn chặn các lỗ hổng web phổ biến.
-![CloudFront Enable Security](/images/5-Workshop/5.3-IAM-Uploader/cf_enable_security.png)
+![CloudFront Enable Security]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_enable_security.png)
 2. Trên màn hình **Review and create**, kiểm tra lại các thiết lập:
    - **S3 origin:** `smartmenu-fe-prod.s3.ap-southeast-1.amazonaws.com`
    - **Grant CloudFront access to origin:** `Yes`
    - **Enable Origin Shield:** `No`
 3. Nhấn **Create distribution**.
-![CloudFront Review Create](/images/5-Workshop/5.3-IAM-Uploader/cf_review_create.png)
+![CloudFront Review Create]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_review_create.png)
 
 ### Bước 3B.5 — Cấu hình Default Root Object
 1. Khi distribution đã được tạo thành công, bấm vào nó, chọn tab **General** và nhấn **Edit**.
 2. Cuộn xuống phần **Default root object**, nhập giá trị `index.html`.
 3. Nhấn **Save changes**.
-![CloudFront Edit Settings](/images/5-Workshop/5.3-IAM-Uploader/cf_edit_settings.png)
+![CloudFront Edit Settings]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_edit_settings.png)
 
 ---
 
@@ -130,7 +130,7 @@ Kiểm tra lại cấu trúc thư mục trên giao diện điều khiển S3:
    - Định dạng: `lmczvvnxz4nqmcu6settpg2uxm0palnw.lambda-url.us-east-1.on.aws` (hãy dùng URL của Lambda của bạn và lược bỏ `https://`).
 3. Đặt **Protocol** là `HTTPS only` và **Minimum Origin SSL protocol** thành `TLSv1.2`.
 4. Nhấn **Create origin**.
-![CloudFront Create Origin Lambda](/images/5-Workshop/5.3-IAM-Uploader/cf_create_origin_lambda.png)
+![CloudFront Create Origin Lambda]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_create_origin_lambda.png)
 
 ### Bước 3C.2 — Tạo Behavior định tuyến cho API (`/api/*`)
 1. Di chuyển sang tab **Behaviors** và chọn **Create behavior**.
@@ -142,7 +142,7 @@ Kiểm tra lại cấu trúc thư mục trên giao diện điều khiển S3:
    - **Cache policy:** `CachingDisabled`
    - **Origin request policy:** `AllViewerExceptHostHeader`
 3. Nhấn **Save changes**.
-![CloudFront Create Behavior](/images/5-Workshop/5.3-IAM-Uploader/cf_create_behavior.png)
+![CloudFront Create Behavior]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_create_behavior.png)
 
 ---
 
@@ -156,7 +156,7 @@ Bởi vì ứng dụng có cấu trúc Single Page Application (SPA) với đị
    - **Name:** `spa-rewrite`
    - **Runtime:** `cloudfront-js-2.0`
 3. Nhấn **Create function**.
-![CloudFront Create Function](/images/5-Workshop/5.3-IAM-Uploader/cf_create_function.png)
+![CloudFront Create Function]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_create_function.png)
 
 ### Bước 3D.2 — Viết mã nguồn cho URL Rewrite
 1. Ở khung soạn thảo mã nguồn trong tab **Development**, dán đoạn code javascript sau:
@@ -180,17 +180,17 @@ Bởi vì ứng dụng có cấu trúc Single Page Application (SPA) với đị
    }
    ```
 2. Nhấn **Save changes**.
-![CloudFront Function Code](/images/5-Workshop/5.3-IAM-Uploader/cf_function_code.png)
+![CloudFront Function Code]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_function_code.png)
 
 ### Bước 3D.3 — Publish và Liên kết Function
 1. Di chuyển sang tab **Publish** và nhấn **Publish function**.
-![CloudFront Publish Function](/images/5-Workshop/5.3-IAM-Uploader/cf_publish_function.png)
+![CloudFront Publish Function]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_publish_function.png)
 2. Cuộn xuống phần **Function associations** để liên kết function với behavior:
    - **Event type:** `Viewer request`
    - **Function type:** `CloudFront Functions`
    - **Function name:** `spa-rewrite`
 3. Nhấn **Save changes** để áp dụng cơ chế viết lại đường dẫn cho các yêu cầu đến.
-![CloudFront Function Association](/images/5-Workshop/5.3-IAM-Uploader/cf_function_association.png)
+![CloudFront Function Association]({{< baseurl >}}images/5-Workshop/5.3-IAM-Uploader/cf_function_association.png)
 
 ---
 

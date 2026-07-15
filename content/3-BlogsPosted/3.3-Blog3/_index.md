@@ -22,7 +22,7 @@ S3 Lifecycle operates based on Rules configured with time thresholds for objects
 
 Here is an example of a typical automated lifecycle process:
 
-![Amazon S3 Lifecycle Process](/images/3-BlogsPosted/blog3.png)
+![Amazon S3 Lifecycle Process]({{< baseurl >}}images/3-BlogsPosted/blog3.png)
 
 - **First 30 days:** The object is stored in the **Amazon S3 Standard** class to guarantee maximum performance for players and developers.
 - **After 30 days:** The object is automatically moved to **S3 Standard-IA (Infrequent Access)** as access frequency decreases.
