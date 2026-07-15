@@ -6,9 +6,8 @@ chapter: false
 pre: " <b> 2. </b> "
 ---
 
-Tại phần này, bạn cần tóm tắt các nội dung trong workshop mà bạn **dự tính** sẽ làm.
 
-# SmartMenu – Hệ thống Menu Điện tử Thông minh tích hợp AI trên nền tảng AWS Serverless
+# SmartMenu - Hệ thống Menu Điện tử Thông minh tích hợp AI trên nền tảng AWS Serverless
 
 ### 1. Tóm tắt
 
@@ -46,6 +45,10 @@ Do đó cần xây dựng một hệ thống số hóa toàn bộ quy trình xem
 
 ### 4. Kiến trúc hệ thống
 
+{{% notice info %}}
+Tạm thời dự án sẽ không triển khai DynamoDB và Bedrock AI do trong lúc thực hiện gặp một vài vấn đề trục trặc nên sẽ thay bằng MongoDB và API Gemini.
+{{% /notice %}}
+
 **Công nghệ sử dụng:**
 
 - **Frontend Web:** ReactJS + Vite, xây dựng giao diện cho khách hàng (Table Menu Client) và quản trị viên (Manager Client).
@@ -64,7 +67,7 @@ Do đó cần xây dựng một hệ thống số hóa toàn bộ quy trình xem
 - **AWS IAM:** Quản lý người dùng, vai trò và phân quyền truy cập giữa các dịch vụ AWS.
 - **Amazon CloudWatch:** Giám sát hệ thống, thu thập logs, metrics và gửi cảnh báo khi xảy ra sự cố.
 
-![SmartMenu Architecture]({{< baseurl >}}images/2-Proposal/smartmenu_architecture.png)
+![SmartMenu Architecture](/images/2-Proposal/smartmenu_architecture.png)
 
 ### 5. Triển khai kỹ thuật
 
@@ -102,58 +105,51 @@ Do đó cần xây dựng một hệ thống số hóa toàn bộ quy trình xem
 - Hệ thống đảm bảo tính bảo mật và phân quyền truy cập phù hợp.
 
 ### 6. Lộ trình triển khai
-
 #### Giai đoạn 1: Học tập và tìm hiểu nền tảng AWS
-
-_Thời gian: 20/04/2026 – 15/05/2026 (Tuần 1 – Tuần 4)_
-
-- **Tuần 1 (20/04 – 24/04):**
+*Thời gian: 05/05/2026 - 31/05/2026 (Tuần 1 - Tuần 4)*
+- **Tuần 1 (05/05 - 10/05):**
   - Tìm hiểu tổng quan về điện toán đám mây (Cloud Computing) và Amazon Web Services (AWS).
   - Làm quen với AWS Management Console và AWS CLI.
-- **Tuần 2 (27/04 – 01/05):**
+- **Tuần 2 (11/05 - 17/05):**
   - Thực hành các lab về: AWS IAM, Amazon VPC, Amazon EC2, Amazon RDS.
-- **Tuần 3 (04/05 – 08/05):**
+- **Tuần 3 (18/05 - 24/05):**
   - Thực hành các lab về: Amazon S3, AWS Lambda, Amazon API Gateway.
-- **Tuần 4 (11/05 – 15/05):**
+- **Tuần 4 (25/05 - 31/05):**
   - Thực hành các lab về: AWS CloudFormation, Amazon DynamoDB.
   - Tìm hiểu AWS Well-Architected Framework và kiến trúc Serverless trên AWS.
 
 #### Giai đoạn 2: Phân tích, thiết kế và phát triển hệ thống SmartMenu
-
-_Thời gian: 18/05/2026 – 12/06/2026 (Tuần 5 – Tuần 8)_
-
-- **Tuần 5 (18/05 – 22/05):**
+*Thời gian: 01/06/2026 - 28/06/2026 (Tuần 5 - Tuần 8)*
+- **Tuần 5 (01/06 - 07/06):**
   - Tìm hiểu yêu cầu nghiệp vụ của hệ thống SmartMenu.
   - Phân tích bài toán và xác định các chức năng chính.
   - Thiết lập môi trường phát triển.
-- **Tuần 6 (25/05 – 29/05):**
+- **Tuần 6 (08/06 - 14/06):**
   - Thiết kế kiến trúc AWS cho hệ thống.
   - Xây dựng sơ đồ AWS Solution Architecture.
   - Thiết kế cơ sở dữ liệu trên DynamoDB.
-- **Tuần 7 (01/06 – 05/06):**
+- **Tuần 7 (15/06 - 21/06):**
   - Phát triển giao diện Table Menu Client và Manager Client.
   - Xây dựng Menu Service và Order Service.
-- **Tuần 8 (08/06 – 12/06):**
+- **Tuần 8 (16/06 - 28/06):**
   - Phát triển Translation Service.
   - Tích hợp Amazon Bedrock cho chức năng dịch ngôn ngữ và tư vấn món ăn.
   - Kết nối các dịch vụ với DynamoDB.
 
 #### Giai đoạn 3: Triển khai, kiểm thử và hoàn thiện hệ thống
-
-_Thời gian: 15/06/2026 – 10/07/2026 (Tuần 9 – Tuần 12)_
-
-- **Tuần 9 (15/06 – 19/06):**
+*Thời gian: 29/06/2026 - 30/07/2026 (Tuần 9 - Tuần 12)*
+- **Tuần 9 (29/06 - 05/07):**
   - Triển khai frontend lên Amazon S3 và Amazon CloudFront.
   - Triển khai API bằng Amazon API Gateway và AWS Lambda.
   - Cấu hình IAM và tích hợp các dịch vụ AWS.
-- **Tuần 10 (22/06 – 26/06):**
+- **Tuần 10 (06/07 - 12/07):**
   - Thực hiện Unit Test và Integration Test.
   - Kiểm thử hiệu năng và tối ưu Lambda, DynamoDB.
-- **Tuần 11 (29/06 – 03/07):**
+- **Tuần 11 (13/06 - 19/07):**
   - Tối ưu giao diện người dùng và trải nghiệm sử dụng.
   - Tối ưu chi phí vận hành trên AWS.
   - Viết tài liệu kỹ thuật và tài liệu kiến trúc.
-- **Tuần 12 (06/07 – 10/07):**
+- **Tuần 12 (20/07 - 30/07):**
   - Kiểm thử toàn bộ hệ thống.
   - Sửa lỗi và hoàn thiện sản phẩm.
 

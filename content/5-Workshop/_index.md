@@ -5,7 +5,7 @@ weight: 5
 chapter: false
 pre: " <b> 5. </b> "
 ---
-# Full-Stack Deployment on AWS — Via SmartMenu Project
+# Full-Stack Deployment on AWS - Via SmartMenu Project
 
 #### Overview
 

@@ -6,9 +6,8 @@ chapter: false
 pre: " <b> 2. </b> "
 ---
 
-In this section, you need to summarize the contents of the workshop that you **plan** to conduct.
 
-# SmartMenu – AI-Powered Smart Electronic Menu System on AWS Serverless Platform
+# SmartMenu - AI-Powered Smart Electronic Menu System on AWS Serverless Platform
 
 ### 1. Executive Summary
 
@@ -46,6 +45,10 @@ Therefore, it is necessary to build a system that digitalizes the entire menu vi
 
 ### 4. Solution Architecture
 
+{{% notice info %}}
+For now, the project will not deploy DynamoDB and Bedrock AI because a few issues occurred during implementation. They will be replaced with MongoDB and the Gemini API.
+{{% /notice %}}
+
 **Technologies Used:**
 
 - **Frontend Web:** ReactJS + Vite, building interfaces for customers (Table Menu Client) and administrators (Manager Client).
@@ -64,7 +67,7 @@ Therefore, it is necessary to build a system that digitalizes the entire menu vi
 - **AWS IAM:** Manages users, roles, and permissions access between AWS services.
 - **Amazon CloudWatch:** Monitors the system, collects logs, metrics, and sends alerts when issues occur.
 
-![SmartMenu Architecture]({{< baseurl >}}images/2-Proposal/smartmenu_architecture.png)
+![SmartMenu Architecture](/images/2-Proposal/smartmenu_architecture.png)
 
 ### 5. Technical Implementation
 
@@ -102,58 +105,51 @@ Therefore, it is necessary to build a system that digitalizes the entire menu vi
 - Secure authentication and proper authorization mechanisms are enforced.
 
 ### 6. Timeline & Milestones
-
 #### Phase 1: Study and Learn AWS Platform
-
-_Timeline: 20/04/2026 – 15/05/2026 (Week 1 – Week 4)_
-
-- **Week 1 (20/04 – 24/04):**
+*Timeline: 05/05/2026 - 31/05/2026 (Week 1 - Week 4)*
+- **Week 1 (05/05 - 10/05):**
   - Learn overview of Cloud Computing and Amazon Web Services (AWS).
   - Get familiar with AWS Management Console and AWS CLI.
-- **Week 2 (27/04 – 01/05):**
+- **Week 2 (11/05 - 17/05):**
   - Practical labs on: AWS IAM, Amazon VPC, Amazon EC2, Amazon RDS.
-- **Week 3 (04/05 – 08/05):**
+- **Week 3 (18/05 - 24/05):**
   - Practical labs on: Amazon S3, AWS Lambda, Amazon API Gateway.
-- **Week 4 (11/05 – 15/05):**
+- **Week 4 (25/05 - 31/05):**
   - Practical labs on: AWS CloudFormation, Amazon DynamoDB.
   - Learn AWS Well-Architected Framework and Serverless architecture on AWS.
 
 #### Phase 2: Analyze, Design, and Develop SmartMenu System
-
-_Timeline: 18/05/2026 – 12/06/2026 (Week 5 – Week 8)_
-
-- **Week 5 (18/05 – 22/05):**
+*Timeline: 01/06/2026 - 28/06/2026 (Week 5 - Week 8)*
+- **Week 5 (01/06 - 07/06):**
   - Learn business requirements of the SmartMenu system.
   - Analyze problems and define core functions.
   - Set up the development environment.
-- **Week 6 (25/05 – 29/05):**
+- **Week 6 (08/06 - 14/06):**
   - Design AWS architecture for the system.
   - Build the AWS Solution Architecture diagram.
   - Design database schemas on DynamoDB.
-- **Week 7 (01/06 – 05/06):**
+- **Week 7 (15/06 - 21/06):**
   - Develop Table Menu Client and Manager Client UI.
   - Build Menu Service and Order Service.
-- **Week 8 (08/06 – 12/06):**
+- **Week 8 (16/06 - 28/06):**
   - Develop Translation Service.
   - Integrate Amazon Bedrock for translation and AI advice.
   - Connect backend services with DynamoDB.
 
 #### Phase 3: Deploy, Test, and Finalize System
-
-_Timeline: 15/06/2026 – 10/07/2026 (Week 9 – Week 12)_
-
-- **Week 9 (15/06 – 19/06):**
+*Timeline: 29/06/2026 - 30/07/2026 (Week 9 - Week 12)*
+- **Week 9 (29/06 - 05/07):**
   - Deploy frontend to Amazon S3 and Amazon CloudFront.
   - Deploy APIs using Amazon API Gateway and AWS Lambda.
   - Configure IAM and integrate AWS services.
-- **Week 10 (22/06 – 26/06):**
+- **Week 10 (06/07 - 12/07):**
   - Perform Unit Tests and Integration Tests.
   - Load test and optimize Lambda, DynamoDB.
-- **Week 11 (29/06 – 03/07):**
+- **Week 11 (13/06 - 19/07):**
   - Optimize UI and User Experience.
   - Optimize operational cost on AWS.
   - Write technical and architecture documentation.
-- **Week 12 (06/07 – 10/07):**
+- **Week 12 (20/07 - 30/07):**
   - End-to-end testing.
   - Bug fixes and final release.
 
