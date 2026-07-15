@@ -24,14 +24,14 @@ Below is the list of weekly worklogs:
 
 **Week 6:** [Advanced Security (Permission Boundaries, KMS, Secrets Manager, WAF)](1.6-week6/)
 
-**Week 7:** [Week 7 Content...](1.7-week7/)
+**Week 7:** [SmartMenu Project Kickoff - Architecture, Schema Design, and Authentication Module](1.7-week7/)
 
-**Week 8:** [Week 8 Content...](1.8-week8/)
+**Week 8:** [Restaurant Module, Table QR Code Generation, and Floor Plans](1.8-week8/)
 
-**Week 9:** [Week 9 Content...](1.9-week9/)
+**Week 9:** [Versioned Menus, Menu Item CRUD, and Allergen Tagging](1.9-week9/)
 
-**Week 10:** [Week 10 Content...](1.10-week10/)
+**Week 10:** [Guest Sessions via QR, Public Menu with Allergen Warnings, and Order Pipeline](1.10-week10/)
 
-**Week 11:** [Week 11 Content...](1.11-week11/)
+**Week 11:** [Cash Payments, Refunds, Reservations, and Operating Hours](1.11-week11/)
 
-**Week 12:** [Week 12 Content...](1.12-week12/)
+**Week 12:** [Security Hardening, Testing, Code Cleanup, and Demo Preparation](1.12-week12/)
