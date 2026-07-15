@@ -62,7 +62,6 @@ Therefore, it is necessary to build a system that digitalizes the entire menu vi
 - **Amazon CloudFront:** Distributes content from Amazon S3 with low latency and accelerates access speed.
 - **Amazon Bedrock:** Provides AI models for translation and dish recommendation functions.
 - **AWS IAM:** Manages users, roles, and permissions access between AWS services.
-- **AWS WAF:** Protects the system from common web exploits.
 - **Amazon CloudWatch:** Monitors the system, collects logs, metrics, and sends alerts when issues occur.
 
 ![SmartMenu Architecture](/images/2-Proposal/smartmenu_architecture.png)
@@ -92,7 +91,7 @@ Therefore, it is necessary to build a system that digitalizes the entire menu vi
 - AWS Lambda for backend business logic.
 - Amazon API Gateway to expose REST APIs.
 - Amazon DynamoDB for data storage.
-- AWS IAM and AWS WAF for system security.
+- AWS IAM for system security.
 - Amazon CloudWatch for monitoring and logging.
 
 **Non-Functional Requirements:**
@@ -197,7 +196,7 @@ Since the SmartMenu system is fully deployed on the AWS cloud platform under a S
 
 - Use Serverless architecture to automatically scale resources.
 - Enable Point-in-Time Recovery (PITR) for DynamoDB and perform scheduled backups.
-- Utilize AWS WAF, Rate Limiting, and IAM Least Privilege principles to improve security.
+- Utilize Rate Limiting and IAM Least Privilege principles to improve security.
 - Set up AWS Budgets and CloudWatch Billing Alarms to monitor and control spending.
 
 #### Contingency Plans
