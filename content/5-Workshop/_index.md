@@ -25,4 +25,3 @@ We will approach the deployment through the core components of the solution:
 3. [IAM & Uploader Account](5.3-IAM-Uploader/)
 4. [Frontend & CloudFront Deployment](5.4-Frontend-Cloudfront/)
 5. [Product Demo](5.5-Demo/)
-6. [Clean up](5.6-Cleanup/)
