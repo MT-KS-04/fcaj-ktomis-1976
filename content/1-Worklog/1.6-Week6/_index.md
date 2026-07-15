@@ -1,6 +1,6 @@
 ---
 title: "Week 6 Worklog"
-date: 2026-06-07
+date: 2026-06-08
 weight: 6
 chapter: false
 pre: " <b> 6.1. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 6.1. </b> "
 
 | Content         | Details                                                                                              |
 | --------------- | ---------------------------------------------------------------------------------------------------- |
-| Duration        | 06/07/2026 - 06/13/2026                                                                              |
+| Duration        | 06/08/2026 - 06/14/2026                                                                              |
 | Internship Week | Week 6                                                                                               |
 | Phase           | Optimize - Security                                                                                  |
 | Program         | First Cloud Journey                                                                                  |

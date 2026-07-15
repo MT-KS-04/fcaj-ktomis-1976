@@ -1,6 +1,6 @@
 ---
 title: "Week 9 Worklog"
-date: 2026-06-28
+date: 2026-06-29
 weight: 9
 chapter: false
 pre: " <b> 1.9. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 1.9. </b> "
 
 | Content | Details |
 | --- | --- |
-| Time | 28/06/2026 - 04/07/2026 |
+| Time | 29/06/2026 - 05/07/2026 |
 | Internship Week | Week 9 |
 | Phase | SmartMenu - Menus, dishes, and allergen tagging |
 | Role | Full-stack, responsible for backend; assisted with frontend |

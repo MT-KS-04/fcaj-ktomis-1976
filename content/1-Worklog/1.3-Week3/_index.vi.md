@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 3"
-date: 2026-05-17
+date: 2026-05-18
 weight: 3
 chapter: false
 pre: " <b> 3.1. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 3.1. </b> "
 
 | Nội dung         | Chi tiết                                                                          |
 | ---------------- | --------------------------------------------------------------------------------- |
-| Thời gian        | 17/05/2026 - 23/05/2026                                                           |
+| Thời gian        | 18/05/2026 - 24/05/2026                                                           |
 | Tuần thực tập    | Tuần 3                                                                            |
 | Giai đoạn        | Explore AWS Services (nâng cao)                                                   |
 | Chương trình học | First Cloud Journey                                                               |

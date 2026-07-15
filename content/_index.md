@@ -25,7 +25,7 @@ chapter: false
 
 &emsp; **Internship Position:** Workforce Bootcamp - First Cloud AI Journey
 
-&emsp; **Internship Duration:** From 03/05/2026 to 27/07/2026
+&emsp; **Internship Duration:** From 05/05/2026 to 30/07/2026
 
 <img src="{{< baseurl >}}images/avatar.png?v=20260708" alt="Your profile picture" width="150" style="margin: 1rem 0;" />
 

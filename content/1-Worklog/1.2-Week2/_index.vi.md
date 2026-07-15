@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 2"
-date: 2026-05-10
+date: 2026-05-11
 weight: 2
 chapter: false
 pre: " <b> 2.1. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 2.1. </b> "
 
 | Nội dung         | Chi tiết                                                                       |
 | ---------------- | ------------------------------------------------------------------------------ |
-| Thời gian        | 10/05/2026 - 16/05/2026                                                        |
+| Thời gian        | 11/05/2026 - 17/05/2026                                                        |
 | Tuần thực tập    | Tuần 2                                                                         |
 | Giai đoạn        | Explore AWS Services                                                           |
 | Chương trình học | First Cloud Journey                                                            |

@@ -1,6 +1,6 @@
 ---
 title: "Week 1 Worklog"
-date: 2026-05-03
+date: 2026-05-05
 weight: 1
 chapter: false
 pre: " <b> 1.1. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 1.1. </b> "
 
 | Content         | Details                                                                                            |
 | --------------- | -------------------------------------------------------------------------------------------------- |
-| Duration        | 05/03/2026 - 05/09/2026                                                                            |
+| Duration        | 05/05/2026 - 05/10/2026                                                                            |
 | Internship Week | Week 1                                                                                             |
 | Phase           | Explore AWS Services                                                                               |
 | Program         | First Cloud Journey                                                                                |
@@ -35,7 +35,7 @@ Since I'm just starting out, I prioritized reading the documentation carefully a
 
 ## Activities Implemented During the Week
 
-### Day 1 - Monday, 05/04/2026
+### Day 1 - Tuesday, 05/05/2026
 
 Topic: **Creating Your First AWS Account** and **Managing Costs with AWS Budgets**.
 Implemented Activities:
@@ -49,7 +49,7 @@ Achieved Results:
 - Have an AWS account to use throughout the internship, with MFA enabled.
 - Understand how AWS Budgets alerts when costs exceed the threshold.
 
-### Day 2 - Tuesday, 05/05/2026
+### Day 2 - Wednesday, 05/06/2026
 
 Topic: **Getting Help with AWS Support** and **Access Management with AWS IAM**.
 Implemented Activities:
@@ -64,7 +64,7 @@ Achieved Results:
 - Know where and at what level to find support when needed.
 - Understand the role of each IAM component and how to create a User and assign a basic Policy.
 
-### Day 3 - Wednesday, 05/06/2026
+### Day 3 - Thursday, 05/07/2026
 
 Topic: **Networking Essentials with Amazon VPC**.
 Implemented Activities:
@@ -79,7 +79,7 @@ Achieved Results:
 - Visualized the basic structure of a VPC.
 - Distinguished between Security Group (stateful) and Network ACL (stateless), at least theoretically.
 
-### Day 4 - Thursday, 05/07/2026
+### Day 4 - Friday, 05/08/2026
 
 Topic: **Compute Essentials with Amazon EC2**.
 Implemented Activities:
@@ -93,7 +93,7 @@ Achieved Results:
 - Understood the roles of AMI, instance type, and key pair when creating virtual machines.
 - Successfully connected to the newly created instance to see how it runs.
 
-### Day 5 - Friday, 05/08/2026
+### Day 5 - Saturday, 05/09/2026
 
 Topic: **Instance Profiling with IAM Roles for EC2** and **Command Line Operations with AWS CLI**.
 Implemented Activities:
@@ -135,7 +135,7 @@ Achieved Results:
 - Was able to use AWS CLI for simple operations and found it faster than the Console for some tasks.
 - Memorized the `aws sts get-caller-identity` command to quickly check the active account/role next time — this will likely be used a lot.
 
-### Day 6 - Saturday, 05/09/2026
+### Day 6 - Sunday, 05/10/2026
 
 Topic: **Static Website Hosting with Amazon S3**.
 Implemented Activities:

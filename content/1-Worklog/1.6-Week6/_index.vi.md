@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 6"
-date: 2026-06-07
+date: 2026-06-08
 weight: 6
 chapter: false
 pre: " <b> 6.1. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 6.1. </b> "
 
 | Nội dung         | Chi tiết                                                                                          |
 | ---------------- | ------------------------------------------------------------------------------------------------- |
-| Thời gian        | 07/06/2026 - 13/06/2026                                                                           |
+| Thời gian        | 08/06/2026 - 14/06/2026                                                                           |
 | Tuần thực tập    | Tuần 6                                                                                            |
 | Giai đoạn        | Optimize - Security                                                                               |
 | Chương trình học | First Cloud Journey                                                                               |

@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 12"
-date: 2026-07-09
+date: 2026-07-20
 weight: 12
 chapter: false
 pre: " <b> 1.12. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 1.12. </b> "
 
 | Nội dung      | Chi tiết                                                        |
 | ------------- | -------------------------------------------------------------- |
-| Thời gian     | 19/07/2026 - 25/07/2026                                        |
+| Thời gian     | 20/07/2026 - 30/07/2026                                        |
 | Tuần thực tập | Tuần 12                                                        |
 | Giai đoạn     | SmartMenu - Hoàn thiện, bảo mật, test và demo                  |
 | Vai trò       | Full-stack, phụ trách backend; FE có hỗ trợ từ thành viên nhóm |

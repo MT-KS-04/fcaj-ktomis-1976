@@ -1,6 +1,6 @@
 ---
 title: "Week 8 Worklog"
-date: 2026-06-21
+date: 2026-06-22
 weight: 8
 chapter: false
 pre: " <b> 1.8. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 1.8. </b> "
 
 | Content | Details |
 | --- | --- |
-| Time | 21/06/2026 - 27/06/2026 |
+| Time | 22/06/2026 - 28/06/2026 |
 | Internship Week | Week 8 |
 | Phase | SmartMenu - Restaurant, tables, QR codes, and floor plans |
 | Role | Full-stack, responsible for backend; assisted with frontend |

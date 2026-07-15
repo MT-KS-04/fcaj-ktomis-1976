@@ -1,6 +1,6 @@
 ---
 title: "Week 7 Worklog"
-date: 2026-06-14
+date: 2026-06-15
 weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 1.7. </b> "
 
 | Content | Details |
 | --- | --- |
-| Time | 14/06/2026 - 20/06/2026 |
+| Time | 15/06/2026 - 21/06/2026 |
 | Internship Week | Week 7 |
 | Phase | Starting SmartMenu project - Initialization & Authentication |
 | Project | SmartMenu (digital menu & ordering system via QR code) |

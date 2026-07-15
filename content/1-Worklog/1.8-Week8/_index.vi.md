@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 8"
-date: 2026-06-21
+date: 2026-06-22
 weight: 8
 chapter: false
 pre: " <b> 1.8. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 1.8. </b> "
 
 | Nội dung      | Chi tiết                                                          |
 | ------------- | ---------------------------------------------------------------- |
-| Thời gian     | 21/06/2026 - 27/06/2026                                          |
+| Thời gian     | 22/06/2026 - 28/06/2026                                          |
 | Tuần thực tập | Tuần 8                                                           |
 | Giai đoạn     | SmartMenu - Nhà hàng, bàn, QR code và sơ đồ tầng                 |
 | Vai trò       | Full-stack, phụ trách backend; FE có hỗ trợ từ thành viên nhóm   |

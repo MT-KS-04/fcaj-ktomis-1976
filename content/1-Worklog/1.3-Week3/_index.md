@@ -1,6 +1,6 @@
 ---
 title: "Week 3 Worklog"
-date: 2026-05-17
+date: 2026-05-18
 weight: 3
 chapter: false
 pre: " <b> 3.1. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 3.1. </b> "
 
 | Content         | Details                                                                                     |
 | --------------- | ------------------------------------------------------------------------------------------- |
-| Duration        | 05/17/2026 - 05/23/2026                                                                     |
+| Duration        | 05/18/2026 - 05/24/2026                                                                     |
 | Internship Week | Week 3                                                                                      |
 | Phase           | Explore AWS Services (Advanced)                                                             |
 | Program         | First Cloud Journey                                                                         |

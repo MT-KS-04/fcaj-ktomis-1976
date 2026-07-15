@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-Trong suốt thời gian thực tập tại chương trình **Workforce Bootcamp – First Cloud AI Journey** từ **03/05/2026** đến nay, tôi đã có cơ hội học hỏi, rèn luyện và áp dụng kiến thức được trang bị tại trường vào môi trường thực tế trên nền tảng AWS.
+Trong suốt thời gian thực tập tại chương trình **Workforce Bootcamp – First Cloud AI Journey** từ **05/05/2026** đến nay, tôi đã có cơ hội học hỏi, rèn luyện và áp dụng kiến thức được trang bị tại trường vào môi trường thực tế trên nền tảng AWS.
 
 Tôi đã trải qua 6 tuần học tập chuyên sâu theo lộ trình **First Cloud Journey**, bao gồm các giai đoạn **Explore AWS Services**, **Migrate to AWS** và **Optimize** (Security & Operations). Trong quá trình này, tôi đã tự nghiên cứu, thực hành workshop và viết worklog hàng tuần về các dịch vụ AWS như IAM, VPC, EC2, S3, RDS, DynamoDB, CloudFront, CloudFormation, KMS, Secrets Manager, WAF và nhiều dịch vụ khác.
 

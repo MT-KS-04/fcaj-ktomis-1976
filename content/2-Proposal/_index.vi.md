@@ -131,7 +131,7 @@ Tạm thời dự án sẽ không triển khai DynamoDB và Bedrock AI do trong 
 - **Tuần 7 (15/06 - 21/06):**
   - Phát triển giao diện Table Menu Client và Manager Client.
   - Xây dựng Menu Service và Order Service.
-- **Tuần 8 (16/06 - 28/06):**
+- **Tuần 8 (22/06 - 28/06):**
   - Phát triển Translation Service.
   - Tích hợp Amazon Bedrock cho chức năng dịch ngôn ngữ và tư vấn món ăn.
   - Kết nối các dịch vụ với DynamoDB.
@@ -145,7 +145,7 @@ Tạm thời dự án sẽ không triển khai DynamoDB và Bedrock AI do trong 
 - **Tuần 10 (06/07 - 12/07):**
   - Thực hiện Unit Test và Integration Test.
   - Kiểm thử hiệu năng và tối ưu Lambda, DynamoDB.
-- **Tuần 11 (13/06 - 19/07):**
+- **Tuần 11 (13/07 - 19/07):**
   - Tối ưu giao diện người dùng và trải nghiệm sử dụng.
   - Tối ưu chi phí vận hành trên AWS.
   - Viết tài liệu kỹ thuật và tài liệu kiến trúc.

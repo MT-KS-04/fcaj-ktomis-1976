@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 10"
-date: 2026-07-05
+date: 2026-07-06
 weight: 10
 chapter: false
 pre: " <b> 1.10. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 1.10. </b> "
 
 | Nội dung      | Chi tiết                                                        |
 | ------------- | -------------------------------------------------------------- |
-| Thời gian     | 05/07/2026 - 11/07/2026                                        |
+| Thời gian     | 06/07/2026 - 12/07/2026                                        |
 | Tuần thực tập | Tuần 10                                                        |
 | Giai đoạn     | SmartMenu - Session khách, xem menu public và đặt món          |
 | Vai trò       | Full-stack, phụ trách backend; FE có hỗ trợ từ thành viên nhóm |

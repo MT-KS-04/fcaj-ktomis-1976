@@ -1,6 +1,6 @@
 ---
 title: "Week 5 Worklog"
-date: 2026-05-31
+date: 2026-06-01
 weight: 5
 chapter: false
 pre: " <b> 5.1. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 5.1. </b> "
 
 | Content         | Details                                                                              |
 | --------------- | ------------------------------------------------------------------------------------ |
-| Duration        | 05/31/2026 - 06/06/2026                                                              |
+| Duration        | 06/01/2026 - 06/07/2026                                                              |
 | Internship Week | Week 5                                                                               |
 | Phase           | Optimize - Operations & Cost Optimization                                            |
 | Program         | First Cloud Journey                                                                  |

@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 7"
-date: 2026-06-14
+date: 2026-06-15
 weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 1.7. </b> "
 
 | Nội dung         | Chi tiết                                                                     |
 | ---------------- | ---------------------------------------------------------------------------- |
-| Thời gian        | 14/06/2026 - 20/06/2026                                                      |
+| Thời gian        | 15/06/2026 - 21/06/2026                                                      |
 | Tuần thực tập    | Tuần 7                                                                       |
 | Giai đoạn        | Bắt đầu project SmartMenu - Khởi tạo & Authentication                        |
 | Dự án            | SmartMenu (hệ thống menu số & đặt món cho nhà hàng qua QR)                   |

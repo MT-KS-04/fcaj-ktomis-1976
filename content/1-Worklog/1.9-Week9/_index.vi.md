@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 9"
-date: 2026-06-28
+date: 2026-06-29
 weight: 9
 chapter: false
 pre: " <b> 1.9. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 1.9. </b> "
 
 | Nội dung      | Chi tiết                                                        |
 | ------------- | -------------------------------------------------------------- |
-| Thời gian     | 28/06/2026 - 04/07/2026                                        |
+| Thời gian     | 29/06/2026 - 05/07/2026                                        |
 | Tuần thực tập | Tuần 9                                                         |
 | Giai đoạn     | SmartMenu - Menu, món ăn và nhãn dị ứng                        |
 | Vai trò       | Full-stack, phụ trách backend; FE có hỗ trợ từ thành viên nhóm |

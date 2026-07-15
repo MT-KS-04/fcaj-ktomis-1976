@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-Throughout my internship at the **Workforce Bootcamp – First Cloud AI Journey** program from **May 3, 2026** to the present, I have had the opportunity to learn, practice, and apply knowledge acquired at university to a real-world technical environment on the AWS platform.
+Throughout my internship at the **Workforce Bootcamp – First Cloud AI Journey** program from **May 5, 2026** to the present, I have had the opportunity to learn, practice, and apply knowledge acquired at university to a real-world technical environment on the AWS platform.
 
 I completed 6 weeks of in-depth structured learning following the **First Cloud Journey** roadmap, covering the stages of **Explore AWS Services**, **Migrate to AWS**, and **Optimize** (Security & Operations). During this time, I independently studied, completed workshops, and wrote weekly worklogs on AWS services including IAM, VPC, EC2, S3, RDS, DynamoDB, CloudFront, CloudFormation, KMS, Secrets Manager, WAF, and more.
 

@@ -1,6 +1,6 @@
 ---
 title: "Week 10 Worklog"
-date: 2026-07-05
+date: 2026-07-06
 weight: 10
 chapter: false
 pre: " <b> 1.10. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 1.10. </b> "
 
 | Content | Details |
 | --- | --- |
-| Time | 05/07/2026 - 11/07/2026 |
+| Time | 06/07/2026 - 12/07/2026 |
 | Internship Week | Week 10 |
 | Phase | SmartMenu - Guest session, public menu view, and ordering |
 | Role | Full-stack, responsible for backend; assisted with frontend |

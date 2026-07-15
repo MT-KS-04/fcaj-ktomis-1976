@@ -131,7 +131,7 @@ For now, the project will not deploy DynamoDB and Bedrock AI because a few issue
 - **Week 7 (15/06 - 21/06):**
   - Develop Table Menu Client and Manager Client UI.
   - Build Menu Service and Order Service.
-- **Week 8 (16/06 - 28/06):**
+- **Week 8 (22/06 - 28/06):**
   - Develop Translation Service.
   - Integrate Amazon Bedrock for translation and AI advice.
   - Connect backend services with DynamoDB.
@@ -145,7 +145,7 @@ For now, the project will not deploy DynamoDB and Bedrock AI because a few issue
 - **Week 10 (06/07 - 12/07):**
   - Perform Unit Tests and Integration Tests.
   - Load test and optimize Lambda, DynamoDB.
-- **Week 11 (13/06 - 19/07):**
+- **Week 11 (13/07 - 19/07):**
   - Optimize UI and User Experience.
   - Optimize operational cost on AWS.
   - Write technical and architecture documentation.

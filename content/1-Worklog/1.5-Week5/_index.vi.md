@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 5"
-date: 2026-05-31
+date: 2026-06-01
 weight: 5
 chapter: false
 pre: " <b> 5.1. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 5.1. </b> "
 
 | Nội dung         | Chi tiết                                                                       |
 | ---------------- | ------------------------------------------------------------------------------ |
-| Thời gian        | 31/05/2026 - 06/06/2026                                                        |
+| Thời gian        | 01/06/2026 - 07/06/2026                                                        |
 | Tuần thực tập    | Tuần 5                                                                         |
 | Giai đoạn        | Optimize - Operations & Cost Optimization                                      |
 | Chương trình học | First Cloud Journey                                                            |

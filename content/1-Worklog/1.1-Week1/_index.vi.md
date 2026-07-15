@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 1"
-date: 2026-05-03
+date: 2026-05-05
 weight: 1
 chapter: false
 pre: " <b> 1.1. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 1.1. </b> "
 
 | Nội dung         | Chi tiết                                                                                 |
 | ---------------- | ---------------------------------------------------------------------------------------- |
-| Thời gian        | 03/05/2026 - 09/05/2026                                                                  |
+| Thời gian        | 05/05/2026 - 10/05/2026                                                                  |
 | Tuần thực tập    | Tuần 1                                                                                   |
 | Giai đoạn        | Explore AWS Services                                                                     |
 | Chương trình học | First Cloud Journey                                                                      |
@@ -36,7 +36,7 @@ Vì mới bắt đầu nên em ưu tiên đọc kỹ tài liệu và làm theo h
 
 ## Nội dung thực hiện trong tuần
 
-### Ngày 1 - Thứ hai, 04/05/2026
+### Ngày 1 - Thứ ba, 05/05/2026
 
 Chủ đề: **Creating Your First AWS Account** và **Managing Costs with AWS Budgets**.
 
@@ -51,7 +51,7 @@ Kết quả đạt được:
 - Có tài khoản AWS để dùng cho cả kỳ, đã bật MFA.
 - Hiểu cách AWS Budgets cảnh báo khi chi phí vượt ngưỡng.
 
-### Ngày 2 - Thứ ba, 05/05/2026
+### Ngày 2 - Thứ tư, 06/05/2026
 
 Chủ đề: **Getting Help with AWS Support** và **Access Management with AWS IAM**.
 
@@ -67,7 +67,7 @@ Kết quả đạt được:
 - Biết khi cần thì tìm hỗ trợ ở đâu và ở mức nào.
 - Nắm được vai trò của từng thành phần IAM và cách tạo User, gán Policy cơ bản.
 
-### Ngày 3 - Thứ tư, 06/05/2026
+### Ngày 3 - Thứ năm, 07/05/2026
 
 Chủ đề: **Networking Essentials with Amazon VPC**.
 
@@ -83,7 +83,7 @@ Kết quả đạt được:
 - Hình dung được cấu trúc một VPC cơ bản.
 - Phân biệt được Security Group (stateful) và Network ACL (stateless), ít nhất là trên lý thuyết.
 
-### Ngày 4 - Thứ năm, 07/05/2026
+### Ngày 4 - Thứ sáu, 08/05/2026
 
 Chủ đề: **Compute Essentials with Amazon EC2**.
 
@@ -98,7 +98,7 @@ Kết quả đạt được:
 - Hiểu được vai trò của AMI, instance type và key pair khi tạo máy ảo.
 - Kết nối được vào instance vừa tạo để xem nó chạy thế nào.
 
-### Ngày 5 - Thứ sáu, 08/05/2026
+### Ngày 5 - Thứ bảy, 09/05/2026
 
 Chủ đề: **Instance Profiling with IAM Roles for EC2** và **Command Line Operations with AWS CLI**.
 
@@ -141,7 +141,7 @@ Kết quả đạt được:
 - Dùng được AWS CLI cho vài thao tác đơn giản, thấy nó nhanh hơn Console ở một số việc.
 - Nhớ được lệnh `aws sts get-caller-identity` để lần sau kiểm tra nhanh mình đang dùng account/role nào — cái này sau chắc dùng nhiều.
 
-### Ngày 6 - Thứ bảy, 09/05/2026
+### Ngày 6 - Chủ nhật, 10/05/2026
 
 Chủ đề: **Static Website Hosting with Amazon S3**.
 

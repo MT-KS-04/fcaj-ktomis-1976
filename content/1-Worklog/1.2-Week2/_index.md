@@ -1,6 +1,6 @@
 ---
 title: "Week 2 Worklog"
-date: 2026-05-10
+date: 2026-05-11
 weight: 2
 chapter: false
 pre: " <b> 2.1. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 2.1. </b> "
 
 | Content         | Details                                                                           |
 | --------------- | --------------------------------------------------------------------------------- |
-| Duration        | 05/10/2026 - 05/16/2026                                                           |
+| Duration        | 05/11/2026 - 05/17/2026                                                           |
 | Internship Week | Week 2                                                                            |
 | Phase           | Explore AWS Services                                                              |
 | Program         | First Cloud Journey                                                               |

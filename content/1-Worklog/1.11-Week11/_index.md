@@ -1,6 +1,6 @@
 ---
 title: "Week 11 Worklog"
-date: 2026-07-09
+date: 2026-07-13
 weight: 11
 chapter: false
 pre: " <b> 1.11. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 1.11. </b> "
 
 | Content | Details |
 | --- | --- |
-| Time | 12/07/2026 - 18/07/2026 |
+| Time | 13/07/2026 - 19/07/2026 |
 | Internship Week | Week 11 |
 | Phase | SmartMenu - Payments, reservations, and operating hours |
 | Role | Full-stack, responsible for backend; assisted with frontend |

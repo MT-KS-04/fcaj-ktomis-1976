@@ -1,6 +1,6 @@
 ---
 title: "Week 12 Worklog"
-date: 2026-07-09
+date: 2026-07-20
 weight: 12
 chapter: false
 pre: " <b> 1.12. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 1.12. </b> "
 
 | Content | Details |
 | --- | --- |
-| Time | 19/07/2026 - 25/07/2026 |
+| Time | 20/07/2026 - 30/07/2026 |
 | Internship Week | Week 12 |
 | Phase | SmartMenu - Polish, security, testing, and demo |
 | Role | Full-stack, responsible for backend; assisted with frontend |

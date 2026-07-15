@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 11"
-date: 2026-07-09
+date: 2026-07-13
 weight: 11
 chapter: false
 pre: " <b> 1.11. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 1.11. </b> "
 
 | Nội dung      | Chi tiết                                                       |
 | ------------- | -------------------------------------------------------------- |
-| Thời gian     | 12/07/2026 - 18/07/2026                                        |
+| Thời gian     | 13/07/2026 - 19/07/2026                                        |
 | Tuần thực tập | Tuần 11                                                        |
 | Giai đoạn     | SmartMenu - Thanh toán, đặt bàn và giờ hoạt động               |
 | Vai trò       | Full-stack, phụ trách backend; FE có hỗ trợ từ thành viên nhóm |
