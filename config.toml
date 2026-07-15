@@ -2,6 +2,7 @@ baseURL = "https://mt-ks-04.github.io/fcaj-ktomis-1976/"
 relativeURLs = false
 canonifyURLs = false
 defaultContentLanguage = "en"
+buildFuture = true
 
 # Change the default theme to be use when building the site with Hugo
 theme = "hugo-theme-learn"
