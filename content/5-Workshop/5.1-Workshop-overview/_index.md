@@ -1,18 +1,23 @@
 ---
-title : "Introduction"
-date : 2024-01-01 
-weight : 1 
-chapter : false
-pre : " <b> 5.1. </b> "
+title: "Introduction"
+date: 2024-01-01
+weight: 1
+chapter: false
+pre: " <b> 5.1. </b> "
 ---
 
-#### VPC endpoints
-+ **VPC endpoints** are virtual devices. They are horizontally scaled, redundant, and highly available VPC components. They allow communication between your compute resources and AWS services without imposing availability risks.
-+ Compute resources running in VPC can access  **Amazon S3**  using a Gateway endpoint. PrivateLink interface endpoints can be used by compute resources running in VPC or on-premises.
+#### AWS Serverless & AI Introduction
+
+- **AWS Serverless** is a cloud computing execution model that allows you to build and run applications without provisioning or managing physical servers. The system scales automatically and charges only for actual resource consumption.
+- **Artificial Intelligence (AI)** integrated via Amazon Bedrock provides powerful Foundation Models to process smart features such as multi-language translation and automated food recommendations for customers.
 
 #### Workshop overview
-In this workshop, you will use two VPCs. 
-+ **"VPC Cloud"** is for cloud resources such as a  **Gateway endpoint** and an EC2 instance to test with. 
-+ **"VPC On-Prem"** simulates an on-premises environment such as a factory or corporate datacenter. An EC2 instance running strongSwan VPN software has been deployed in "VPC On-prem" and automatically configured to establish a Site-to-Site VPN tunnel with AWS Transit Gateway. This VPN simulates connectivity from an on-premises location to the AWS cloud. To minimize costs, only one VPN instance is provisioned to support this workshop. When planning VPN connectivity for your production workloads, AWS recommends using multiple VPN devices for high availability.
 
-![overview](/images/5-Workshop/5.1-Workshop-overview/diagram1.png)
+In this workshop, you will build the **SmartMenu** system using a Serverless architecture integrated with AI on AWS, featuring the following key components:
+
+- **Frontend:** Client and Admin web interfaces developed with ReactJS & Vite, hosted on Amazon S3 and distributed via Amazon CloudFront.
+- **Backend & API:** Amazon API Gateway routes incoming requests to AWS Lambda, which handles business logic such as menu management, ordering, and translation.
+- **Database:** Amazon DynamoDB stores menu and order data with high performance and low latency.
+- **AI Integration:** Amazon Bedrock is used to connect with Foundation Models to power automated translation and food recommendations.
+
+![overview](/images/5-Workshop/5.1-Workshop-overview/smartmenu_architecture.png)

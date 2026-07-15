@@ -1,19 +1,23 @@
 ---
-title : "Giới thiệu"
-date : 2024-01-01 
-weight : 1
-chapter : false
-pre : " <b> 5.1. </b> "
+title: "Giới thiệu"
+date: 2024-01-01
+weight: 1
+chapter: false
+pre: " <b> 5.1. </b> "
 ---
 
-#### Giới thiệu về VPC Endpoint
+#### Giới thiệu về AWS Serverless & AI
 
-+ Điểm cuối VPC (endpoint) là thiết bị ảo. Chúng là các thành phần VPC có thể mở rộng theo chiều ngang, dự phòng và có tính sẵn sàng cao. Chúng cho phép giao tiếp giữa tài nguyên điện toán của bạn và dịch vụ AWS mà không gây ra rủi ro về tính sẵn sàng.
-+ Tài nguyên điện toán đang chạy trong VPC có thể truy cập Amazon S3 bằng cách sử dụng điểm cuối Gateway. Interface Endpoint  PrivateLink có thể được sử dụng bởi tài nguyên chạy trong VPC hoặc tại TTDL.
+- **AWS Serverless** là mô hình kiến trúc điện toán đám mây cho phép bạn xây dựng và chạy ứng dụng mà không cần quản lý hay vận hành máy chủ vật lý. Hệ thống tự động mở rộng và chỉ tính phí theo mức độ sử dụng thực tế.
+- **Trí tuệ nhân tạo (AI)** tích hợp qua Amazon Bedrock cung cấp các mô hình ngôn ngữ lớn (LLMs) mạnh mẽ để xử lý các tính năng thông minh như dịch đa ngôn ngữ và tư vấn món ăn trực tiếp cho khách hàng.
 
 #### Tổng quan về workshop
-Trong workshop này, bạn sẽ sử dụng hai VPC.
-+ **"VPC Cloud"** dành cho các tài nguyên cloud như Gateway endpoint và EC2 instance để kiểm tra.
-+ **"VPC On-Prem"** mô phỏng môi trường truyền thống như nhà máy hoặc trung tâm dữ liệu của công ty. Một EC2 Instance chạy phần mềm StrongSwan VPN đã được triển khai trong "VPC On-prem" và được cấu hình tự động để thiết lập đường hầm VPN Site-to-Site với AWS Transit Gateway. VPN này mô phỏng kết nối từ một vị trí tại TTDL (on-prem) với AWS cloud. Để giảm thiểu chi phí, chỉ một phiên bản VPN được cung cấp để hỗ trợ workshop này. Khi lập kế hoạch kết nối VPN cho production workloads của bạn, AWS khuyên bạn nên sử dụng nhiều thiết bị VPN để có tính sẵn sàng cao.
 
-![overview](/images/5-Workshop/5.1-Workshop-overview/diagram1.png)
+Trong workshop này, bạn sẽ xây dựng hệ thống **SmartMenu** theo kiến trúc Serverless tích hợp AI trên AWS với các thành phần chính:
+
+- **Frontend:** Giao diện khách hàng và quản trị viên được phát triển bằng ReactJS & Vite, triển khai trên Amazon S3 và phân phối qua Amazon CloudFront.
+- **Backend & API:** API Gateway đóng vai trò tiếp nhận request, định tuyến tới AWS Lambda xử lý các nghiệp vụ (quản lý thực đơn, đặt món, hỗ trợ dịch ngôn ngữ).
+- **Database:** Amazon DynamoDB lưu trữ dữ liệu thực đơn và đơn hàng với hiệu năng cao và độ trễ thấp.
+- **AI Integration:** Sử dụng Amazon Bedrock để kết nối với các mô hình Foundation Models phục vụ dịch thuật và tư vấn món ăn tự động.
+
+![overview](/images/5-Workshop/5.1-Workshop-overview/smartmenu_architecture.png)
