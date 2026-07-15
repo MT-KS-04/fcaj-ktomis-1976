@@ -5,27 +5,24 @@ weight: 5
 chapter: false
 pre: " <b> 5. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
-
-# Secure Hybrid Access to S3 using VPC Endpoints
+# Full-Stack Deployment on AWS — Via SmartMenu Project
 
 #### Overview
 
-**AWS PrivateLink** provides private connectivity to AWS services from VPCs and your on-premises networks, without exposing your traffic to the Public Internet.
+**SmartMenu** is a smart electronic menu system integrated with Artificial Intelligence (AI), built on advanced AWS Serverless architecture.
 
-In this lab, you will learn how to create, configure, and test VPC endpoints that enable your workloads to reach AWS services without traversing the Public Internet.
+In this workshop, you will learn how to deploy and configure a complete Full-stack application using AWS cloud services to ensure high availability, security, and cost optimization.
 
-You will create two types of endpoints to access Amazon S3: a Gateway VPC endpoint, and an Interface VPC endpoint. These two types of VPC endpoints offer different benefits depending on if you are accessing Amazon S3 from the cloud or your on-premises location
-+ **Gateway** - Create a gateway endpoint to send traffic to Amazon S3 or DynamoDB using private IP addresses.You route traffic from your VPC to the gateway endpoint using route tables.
-+ **Interface** - Create an interface endpoint to send traffic to endpoint services that use a Network Load Balancer to distribute traffic. Traffic destined for the endpoint service is resolved using DNS.
+We will approach the deployment through the core components of the solution:
++ **Frontend:** Use Amazon S3 and CloudFront to host and distribute the ReactJS application quickly with global low latency.
++ **Backend & Database:** Deploy serverless APIs with API Gateway and AWS Lambda, connecting data to Amazon DynamoDB.
++ **AI & Security:** Integrate AI models from Amazon Bedrock and set up strict IAM security permissions.
 
 #### Content
 
-1. [Workshop overview](5.1-Workshop-overview)
-2. [Prerequiste](5.2-Prerequiste/)
-3. [Access S3 from VPC](5.3-S3-vpc/)
-4. [Access S3 from On-premises](5.4-S3-onprem/)
-5. [VPC Endpoint Policies (Bonus)](5.5-Policy/)
+1. [Workshop overview](5.1-Workshop-overview/)
+2. [Prerequisite](5.2-Prerequiste/)
+3. [IAM & Uploader Account](5.3-IAM-Uploader/)
+4. [Frontend & CloudFront Deployment](5.4-Frontend-Cloudfront/)
+5. [Product Demo](5.5-Demo/)
 6. [Clean up](5.6-Cleanup/)
