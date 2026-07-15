@@ -6,237 +6,296 @@ chapter : false
 pre : " <b> 5.2. </b> "
 ---
 
-#### IAM permissions
-Gắn IAM permission policy sau vào tài khoản aws user của bạn để triển khai và dọn dẹp tài nguyên trong workshop này.
+# PHẦN 1 — CHUẨN BỊ CODE (làm trong máy)
+
+## 1A. BACKEND — sửa để chạy được trên Lambda
+
+BE hiện tại là Express long-running (`src/server.ts` gọi `app.listen()`). Cần tách phần khởi tạo app ra khỏi phần `listen`, rồi thêm 1 file handler cho Lambda. **Logic nghiệp vụ (router, controller, model) giữ nguyên, không đụng.**
+
+### Bước 1A.1 — Cài package cầu nối
+
+```bash
+cd smart-menu-api
+npm i @codegenie/serverless-express
 ```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": [
-                "cloudformation:*",
-                "cloudwatch:*",
-                "ec2:AcceptTransitGatewayPeeringAttachment",
-                "ec2:AcceptTransitGatewayVpcAttachment",
-                "ec2:AllocateAddress",
-                "ec2:AssociateAddress",
-                "ec2:AssociateIamInstanceProfile",
-                "ec2:AssociateRouteTable",
-                "ec2:AssociateSubnetCidrBlock",
-                "ec2:AssociateTransitGatewayRouteTable",
-                "ec2:AssociateVpcCidrBlock",
-                "ec2:AttachInternetGateway",
-                "ec2:AttachNetworkInterface",
-                "ec2:AttachVolume",
-                "ec2:AttachVpnGateway",
-                "ec2:AuthorizeSecurityGroupEgress",
-                "ec2:AuthorizeSecurityGroupIngress",
-                "ec2:CreateClientVpnEndpoint",
-                "ec2:CreateClientVpnRoute",
-                "ec2:CreateCustomerGateway",
-                "ec2:CreateDhcpOptions",
-                "ec2:CreateFlowLogs",
-                "ec2:CreateInternetGateway",
-                "ec2:CreateLaunchTemplate",
-                "ec2:CreateNetworkAcl",
-                "ec2:CreateNetworkInterface",
-                "ec2:CreateNetworkInterfacePermission",
-                "ec2:CreateRoute",
-                "ec2:CreateRouteTable",
-                "ec2:CreateSecurityGroup",
-                "ec2:CreateSubnet",
-                "ec2:CreateSubnetCidrReservation",
-                "ec2:CreateTags",
-                "ec2:CreateTransitGateway",
-                "ec2:CreateTransitGatewayPeeringAttachment",
-                "ec2:CreateTransitGatewayPrefixListReference",
-                "ec2:CreateTransitGatewayRoute",
-                "ec2:CreateTransitGatewayRouteTable",
-                "ec2:CreateTransitGatewayVpcAttachment",
-                "ec2:CreateVpc",
-                "ec2:CreateVpcEndpoint",
-                "ec2:CreateVpcEndpointConnectionNotification",
-                "ec2:CreateVpcEndpointServiceConfiguration",
-                "ec2:CreateVpnConnection",
-                "ec2:CreateVpnConnectionRoute",
-                "ec2:CreateVpnGateway",
-                "ec2:DeleteCustomerGateway",
-                "ec2:DeleteFlowLogs",
-                "ec2:DeleteInternetGateway",
-                "ec2:DeleteNetworkInterface",
-                "ec2:DeleteNetworkInterfacePermission",
-                "ec2:DeleteRoute",
-                "ec2:DeleteRouteTable",
-                "ec2:DeleteSecurityGroup",
-                "ec2:DeleteSubnet",
-                "ec2:DeleteSubnetCidrReservation",
-                "ec2:DeleteTags",
-                "ec2:DeleteTransitGateway",
-                "ec2:DeleteTransitGatewayPeeringAttachment",
-                "ec2:DeleteTransitGatewayPrefixListReference",
-                "ec2:DeleteTransitGatewayRoute",
-                "ec2:DeleteTransitGatewayRouteTable",
-                "ec2:DeleteTransitGatewayVpcAttachment",
-                "ec2:DeleteVpc",
-                "ec2:DeleteVpcEndpoints",
-                "ec2:DeleteVpcEndpointServiceConfigurations",
-                "ec2:DeleteVpnConnection",
-                "ec2:DeleteVpnConnectionRoute",
-                "ec2:Describe*",
-                "ec2:DetachInternetGateway",
-                "ec2:DisassociateAddress",
-                "ec2:DisassociateRouteTable",
-                "ec2:GetLaunchTemplateData",
-                "ec2:GetTransitGatewayAttachmentPropagations",
-                "ec2:ModifyInstanceAttribute",
-                "ec2:ModifySecurityGroupRules",
-                "ec2:ModifyTransitGatewayVpcAttachment",
-                "ec2:ModifyVpcAttribute",
-                "ec2:ModifyVpcEndpoint",
-                "ec2:ReleaseAddress",
-                "ec2:ReplaceRoute",
-                "ec2:RevokeSecurityGroupEgress",
-                "ec2:RevokeSecurityGroupIngress",
-                "ec2:RunInstances",
-                "ec2:StartInstances",
-                "ec2:StopInstances",
-                "ec2:UpdateSecurityGroupRuleDescriptionsEgress",
-                "ec2:UpdateSecurityGroupRuleDescriptionsIngress",
-                "iam:AddRoleToInstanceProfile",
-                "iam:AttachRolePolicy",
-                "iam:CreateInstanceProfile",
-                "iam:CreatePolicy",
-                "iam:CreateRole",
-                "iam:DeleteInstanceProfile",
-                "iam:DeletePolicy",
-                "iam:DeleteRole",
-                "iam:DeleteRolePolicy",
-                "iam:DetachRolePolicy",
-                "iam:GetInstanceProfile",
-                "iam:GetPolicy",
-                "iam:GetRole",
-                "iam:GetRolePolicy",
-                "iam:ListPolicyVersions",
-                "iam:ListRoles",
-                "iam:PassRole",
-                "iam:PutRolePolicy",
-                "iam:RemoveRoleFromInstanceProfile",
-                "lambda:CreateFunction",
-                "lambda:DeleteFunction",
-                "lambda:DeleteLayerVersion",
-                "lambda:GetFunction",
-                "lambda:GetLayerVersion",
-                "lambda:InvokeFunction",
-                "lambda:PublishLayerVersion",
-                "logs:CreateLogGroup",
-                "logs:DeleteLogGroup",
-                "logs:DescribeLogGroups",
-                "logs:PutRetentionPolicy",
-                "route53:ChangeTagsForResource",
-                "route53:CreateHealthCheck",
-                "route53:CreateHostedZone",
-                "route53:CreateTrafficPolicy",
-                "route53:DeleteHostedZone",
-                "route53:DisassociateVPCFromHostedZone",
-                "route53:GetHostedZone",
-                "route53:ListHostedZones",
-                "route53domains:ListDomains",
-                "route53domains:ListOperations",
-                "route53domains:ListTagsForDomain",
-                "route53resolver:AssociateResolverEndpointIpAddress",
-                "route53resolver:AssociateResolverRule",
-                "route53resolver:CreateResolverEndpoint",
-                "route53resolver:CreateResolverRule",
-                "route53resolver:DeleteResolverEndpoint",
-                "route53resolver:DeleteResolverRule",
-                "route53resolver:DisassociateResolverEndpointIpAddress",
-                "route53resolver:DisassociateResolverRule",
-                "route53resolver:GetResolverEndpoint",
-                "route53resolver:GetResolverRule",
-                "route53resolver:ListResolverEndpointIpAddresses",
-                "route53resolver:ListResolverEndpoints",
-                "route53resolver:ListResolverRuleAssociations",
-                "route53resolver:ListResolverRules",
-                "route53resolver:ListTagsForResource",
-                "route53resolver:UpdateResolverEndpoint",
-                "route53resolver:UpdateResolverRule",
-                "s3:AbortMultipartUpload",
-                "s3:CreateBucket",
-                "s3:DeleteBucket",
-                "s3:DeleteObject",
-                "s3:GetAccountPublicAccessBlock",
-                "s3:GetBucketAcl",
-                "s3:GetBucketOwnershipControls",
-                "s3:GetBucketPolicy",
-                "s3:GetBucketPolicyStatus",
-                "s3:GetBucketPublicAccessBlock",
-                "s3:GetObject",
-                "s3:GetObjectVersion",
-                "s3:GetBucketVersioning",
-                "s3:ListAccessPoints",
-                "s3:ListAccessPointsForObjectLambda",
-                "s3:ListAllMyBuckets",
-                "s3:ListBucket",
-                "s3:ListBucketMultipartUploads",
-                "s3:ListBucketVersions",
-                "s3:ListJobs",
-                "s3:ListMultipartUploadParts",
-                "s3:ListMultiRegionAccessPoints",
-                "s3:ListStorageLensConfigurations",
-                "s3:PutAccountPublicAccessBlock",
-                "s3:PutBucketAcl",
-                "s3:PutBucketPolicy",
-                "s3:PutBucketPublicAccessBlock",
-                "s3:PutObject",
-                "secretsmanager:CreateSecret",
-                "secretsmanager:DeleteSecret",
-                "secretsmanager:DescribeSecret",
-                "secretsmanager:GetSecretValue",
-                "secretsmanager:ListSecrets",
-                "secretsmanager:ListSecretVersionIds",
-                "secretsmanager:PutResourcePolicy",
-                "secretsmanager:TagResource",
-                "secretsmanager:UpdateSecret",
-                "sns:ListTopics",
-                "ssm:DescribeInstanceProperties",
-                "ssm:DescribeSessions",
-                "ssm:GetConnectionStatus",
-                "ssm:GetParameters",
-                "ssm:ListAssociations",
-                "ssm:ResumeSession",
-                "ssm:StartSession",
-                "ssm:TerminateSession"
-            ],
-            "Resource": "*"
-        }
-    ]
+
+### Bước 1A.2 — Tách `src/server.ts` thành `app.ts` + `server.ts`
+
+Hiện tại `src/server.ts` vừa dựng app (helmet, cors, compression, rate-limit, mount router `/api/v1`, error handler) vừa `app.listen()`. Tách:
+
+**Tạo `src/app.ts`** — chuyển toàn bộ phần khởi tạo app từ `server.ts` sang đây, chỉ bỏ `app.listen()`, thêm `export default app`:
+
+```ts
+// src/app.ts
+import express from 'express';
+import helmet from 'helmet';
+import cors from 'cors';
+import compression from 'compression';
+import cookieParser from 'cookie-parser';
+import morgan from 'morgan';
+// ...import các router, middleware error handler như hiện tại đang import trong server.ts
+
+const app = express();
+
+// BẮT BUỘC khi đứng sau CloudFront: để rate-limit đọc đúng client IP
+// và cookie `secure` nhận đúng protocol qua header X-Forwarded-*
+app.set('trust proxy', 1);
+
+app.use(helmet());
+app.use(cors({ origin: true, credentials: true })); // xem ghi chú CORS bên dưới
+app.use(compression());
+app.use(express.json());
+app.use(cookieParser());
+app.use(morgan('tiny'));
+
+// Mount router y như hiện tại (giữ nguyên prefix /api/v1)
+app.use('/api/v1', /* rootRouter của bạn từ src/router/v1 */);
+
+// Global error handler giữ nguyên (đặt sau cùng)
+app.use(/* errorHandler middleware của bạn */);
+
+export default app;
+```
+
+**Sửa `src/server.ts`** — chỉ còn nhiệm vụ chạy local:
+
+```ts
+// src/server.ts
+import app from './app';
+import { connectDB } from './lib/db'; // đường dẫn thật tới file kết nối Mongo của bạn trong src/lib
+
+const PORT = Number(process.env.PORT) || 3000;
+
+connectDB()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`SmartMenu API (local) running on http://localhost:${PORT}/api/v1`);
+    });
+  })
+  .catch((err) => {
+    console.error('Failed to start server:', err);
+    process.exit(1);
+  });
+```
+
+> Lưu ý: `connectDB` là hàm kết nối Mongo hiện có trong `src/lib/` của bạn. Nếu tên/đường dẫn khác, chỉnh import cho đúng. Nếu code cũ connect Mongo ngay trong `server.ts`, tách nó ra thành `src/lib/db.ts` như bước 1A.3.
+
+### Bước 1A.3 — Cache MongoDB connection (chỗ dễ hỏng nhất trên Lambda)
+
+Lambda tái sử dụng container giữa các request → **không** được `mongoose.connect()` mỗi lần gọi. Phải cache connection ở scope module.
+
+**Sửa/tạo `src/lib/db.ts`:**
+
+```ts
+// src/lib/db.ts
+import mongoose from 'mongoose';
+
+let cached: typeof mongoose | null = null;
+
+export async function connectDB() {
+  // Nếu đã kết nối và socket còn sống thì tái dùng
+  if (cached && mongoose.connection.readyState === 1) {
+    return cached;
+  }
+  cached = await mongoose.connect(process.env.MONGOOSE_URL as string, {
+    serverSelectionTimeoutMS: 5000,
+    maxPoolSize: 5, // Lambda: giữ pool nhỏ để không vắt cạn connection Atlas
+  });
+  return cached;
 }
-
 ```
 
-#### Khởi tạo tài nguyên bằng CloudFormation
+> Dùng **MongoDB Atlas** (Mongo không chạy trên Lambda). Trong Atlas → **Network Access** → thêm `0.0.0.0/0` (đơn giản cho MVP; siết lại bằng VPC/NAT về sau nếu cần).
 
-Trong lab này, chúng ta sẽ dùng N.Virginia region (us-east-1).
+### Bước 1A.4 — Tạo entry cho Lambda: `src/lambda.ts`
 
-Để chuẩn bị cho môi trường làm workshop, chúng ta deploy CloudFormation template sau (click link): [PrivateLinkWorkshop ](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://s3.us-east-1.amazonaws.com/reinvent-endpoints-builders-session/Nested.yaml&stackName=PLCloudSetup). Để nguyên các lựa chọn mặc định.
+Đây là **file duy nhất viết mới** cho Lambda:
 
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack1.png)
+```ts
+// src/lambda.ts
+import serverlessExpress from '@codegenie/serverless-express';
+import app from './app';
+import { connectDB } from './lib/db';
 
-+ Lựa chọn 2 mục acknowledgement 
-+ Chọn Create stack
+let cachedServer: ReturnType<typeof serverlessExpress> | null = null;
 
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack2.png)
+export const handler = async (event: any, context: any) => {
+  // Không chờ event loop rỗng — nếu không Lambda treo vì socket Mongo còn mở
+  context.callbackWaitsForEmptyEventLoop = false;
 
-Quá trình triển khai CloudFormation cần khoảng 15 phút để hoàn thành.
+  await connectDB();
 
-![complete](/images/5-Workshop/5.2-Prerequisite/complete.png)
+  if (!cachedServer) {
+    cachedServer = serverlessExpress({ app });
+  }
+  return cachedServer(event, context);
+};
+```
 
-+ 2 VPCs đã được tạo
+### Bước 1A.5 — Sửa cookie refresh token cho production
 
-![vpcs](/images/5-Workshop/5.2-Prerequisite/vpcs.png)
+BE của bạn set refresh token qua httpOnly cookie (endpoint `/auth/login`, `/auth/refresh-token`, `/auth/logout`). Vì FE và API **cùng domain** qua CloudFront (same-site), chỉ cần chỉnh chỗ set cookie (thường trong controller auth `src/controller/v1/`):
 
-+ 3 EC2s đã được tạo
+```ts
+res.cookie('refreshToken', refreshToken, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production', // production bắt buộc HTTPS
+  sameSite: 'lax',                                // cùng domain → 'lax' đủ
+  path: '/api/v1/auth',                           // khớp path route auth
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+});
+```
 
-![EC2](/images/5-Workshop/5.2-Prerequisite/ec2.png)
+> Vì same-domain nên **không cần** `sameSite: 'none'`. Chỉ dùng `'none'` nếu sau này tách FE/BE khác domain (khi đó bắt buộc kèm `secure: true`).
+
+### Bước 1A.6 — Ghi chú CORS
+
+Cùng domain qua CloudFront ⇒ request là same-origin ⇒ CORS gần như không kích hoạt. Cứ để `cors({ origin: true, credentials: true })` cho an toàn (không gây hại). Không cần whitelist domain riêng.
+
+### Bước 1A.7 — Kiểm tra `tsconfig.json`
+
+Đảm bảo có:
+```json
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "module": "commonjs",
+    "target": "ES2020",
+    "esModuleInterop": true
+  }
+}
+```
+> Handler trên Lambda sẽ là `dist/lambda.handler`, nên `lambda.ts` phải build ra `dist/lambda.js`. Nếu bạn dùng path alias (`tsconfig-paths`), cân nhắc build bằng `esbuild`/`tsc` sao cho alias được resolve trong `dist` (xem ghi chú cuối phần).
+
+### Bước 1A.8 — Build + đóng gói zip
+
+```bash
+npm run build            # tsc → ra dist/ (phải có dist/lambda.js)
+
+# Cài lại chỉ dependencies production để zip gọn
+rm -rf node_modules
+npm ci --omit=dev
+
+# Đóng gói
+zip -r function.zip dist node_modules package.json
+```
+
+> Kết thúc 1A: bạn có **`function.zip`** — chứa `dist/`, `node_modules` (prod), `package.json`. Đây là artifact BE hoàn chỉnh để upload lên Lambda ở PHẦN 2.
+
+> ⚠️ Nếu dự án dùng `tsconfig-paths` (alias `@/...`): `tsc` **không** rewrite alias trong output. Hai cách xử lý:
+> 1. Build bằng esbuild bundle 1 file: `npx esbuild src/lambda.ts --bundle --platform=node --target=node20 --outfile=dist/lambda.js` rồi zip `dist` + `package.json` (không cần `node_modules` nếu bundle hết) — gọn và nhanh cold start nhất.
+> 2. Hoặc thêm `tsconfig-paths/register` vào runtime — phức tạp hơn trên Lambda. Khuyên dùng cách esbuild.
+
+---
+
+## 1B. FRONTEND — build 3 app tĩnh
+
+FE build ra 3 app qua Vite mode. Vì tất cả nằm chung 1 domain, API gọi bằng path tương đối `/api/v1`.
+
+### Bước 1B.1 — Tạo file env production
+
+Tạo `.env.production` (Vite tự nạp khi build production). Domain sẽ là domain CloudFront — nhưng lúc này chưa có, nên tạm để giá trị và **quay lại điền sau khi có domain CloudFront ở PHẦN 3** (rồi build lại). Hoặc nếu bạn đã có domain CloudFront/custom domain thì điền luôn.
+
+```
+# API cùng domain → dùng path tương đối
+VITE_API_BASE_URL=/api/v1
+
+# Origin của từng app — dùng để tablet sinh QR trỏ đúng app, và điều hướng chéo
+# Điền domain CloudFront thật sau PHẦN 3, ví dụ:
+VITE_LANDING_ORIGIN=https://dxxxx.cloudfront.net
+VITE_OWNER_ORIGIN=https://dxxxx.cloudfront.net/owner
+VITE_TABLET_ORIGIN=https://dxxxx.cloudfront.net/tablet
+```
+
+> ⚠️ Quan trọng: tablet app sinh **QR code cho từng bàn** trỏ về `VITE_TABLET_ORIGIN`. Nếu để sai (vd localhost), QR in ra sẽ không mở được. Phải là domain production thật.
+>
+> ⚠️ Đảm bảo **không** bật `VITE_USE_MOCK_API=true` trong bản production (mock API chỉ dùng khi dev). Để trống hoặc `false`.
+
+### Bước 1B.2 — Build 3 app ra 3 thư mục riêng
+
+`npm run build` mặc định build theo mode hiện tại. Cần build từng mode ra outDir riêng:
+
+```bash
+cd smart-menu-fe
+npm ci
+
+npm run build -- --mode landing --outDir dist/landing --emptyOutDir
+npm run build -- --mode owner   --outDir dist/owner   --emptyOutDir
+npm run build -- --mode tablet  --outDir dist/tablet  --emptyOutDir
+```
+
+> Nếu script `build` trong `package.json` đã cố định mode/outDir khiến cờ trên không ăn, mở `package.json` thêm 3 script:
+> ```json
+> "build:landing": "vite build --mode landing --outDir dist/landing --emptyOutDir",
+> "build:owner":   "vite build --mode owner   --outDir dist/owner   --emptyOutDir",
+> "build:tablet":  "vite build --mode tablet  --outDir dist/tablet  --emptyOutDir"
+> ```
+> rồi chạy `npm run build:landing && npm run build:owner && npm run build:tablet`.
+
+Kết quả cần có 3 thư mục, mỗi thư mục là 1 SPA hoàn chỉnh:
+```
+dist/landing/index.html + assets/
+dist/owner/index.html   + assets/
+dist/tablet/index.html  + assets/
+```
+
+> ⚠️ Vấn đề base path: khi owner/tablet chạy ở sub-path (`/owner/`, `/tablet/`), Vite cần biết `base` để nạp đúng đường dẫn `assets/`. Thêm vào `vite.config.ts`:
+> ```ts
+> // vite.config.ts
+> export default defineConfig(({ mode }) => ({
+>   base:
+>     mode === 'owner' ? '/owner/' :
+>     mode === 'tablet' ? '/tablet/' :
+>     '/',
+>   // ...phần config còn lại giữ nguyên
+> }));
+> ```
+> Không set `base`, các app con sẽ trắng trang vì tìm asset sai đường dẫn.
+
+> Kết thúc 1B: bạn có **3 thư mục dist** sẵn sàng upload lên S3.
+
+---
+
+## 1C. AWS S3 BUCKET — Tạo Bucket lưu trữ Ảnh món ăn
+
+Để ứng dụng có thể hiển thị và upload ảnh món ăn, chúng ta cần chuẩn bị một S3 Bucket với chính sách truy cập công khai (Public Read).
+
+### Bước 1C.1 — Tạo S3 Bucket cho Ảnh
+1. Truy cập AWS Console, tìm kiếm và chọn dịch vụ **S3**.
+2. Nhấn nút **Create bucket**.
+   ![S3 List](/images/5-Workshop/5.2-Prerequisite/s3_list.png)
+3. Cấu hình thông tin Bucket:
+   - **Bucket name:** Nhập tên duy nhất toàn cầu, ví dụ: `smartmenu-assets-2026`.
+   - **AWS Region:** Chọn **Asia Pacific (Singapore) ap-southeast-1** (hoặc region bạn mong muốn).
+   ![S3 Create Settings](/images/5-Workshop/5.2-Prerequisite/s3_create.png)
+4. Cấu hình Quyền truy cập công khai:
+   - Cuộn xuống phần **Block Public Access settings for this bucket**.
+   - Bỏ tích chọn **Block all public access** (Cho phép truy cập công khai).
+   - Tích chọn hộp thoại xác nhận **I acknowledge that the current settings might result in this bucket and the objects within becoming public**.
+   ![S3 Public Access](/images/5-Workshop/5.2-Prerequisite/s3_public_access.png)
+5. Nhấn **Create bucket** ở cuối trang. Bạn sẽ thấy thông báo tạo bucket thành công.
+   ![S3 Created](/images/5-Workshop/5.2-Prerequisite/s3_created.png)
+
+### Bước 1C.2 — Cấu hình Bucket Policy (Cho phép Đọc công khai)
+1. Chọn bucket vừa tạo từ danh sách, chọn tab **Permissions**.
+2. Cuộn xuống mục **Bucket policy**, nhấn **Edit**.
+   ![S3 Policy Edit](/images/5-Workshop/5.2-Prerequisite/s3_policy_edit.png)
+3. Dán đoạn JSON sau vào Policy Editor để cho phép mọi người đọc ảnh từ bucket (thay thế `smartmenu-assets-2026` bằng tên bucket của bạn):
+   ```json
+   {
+       "Version": "2012-10-17",
+       "Statement": [
+           {
+               "Sid": "PublicReadGetObject",
+               "Effect": "Allow",
+               "Principal": "*",
+               "Action": "s3:GetObject",
+               "Resource": "arn:aws:s3:::smartmenu-assets-2026/*"
+           }
+       ]
+   }
+   ```
+   ![S3 Policy JSON](/images/5-Workshop/5.2-Prerequisite/s3_policy_json.png)
+4. Nhấn **Save changes**. Trạng thái bucket sẽ chuyển sang **Public**.
+   ![S3 Policy Success](/images/5-Workshop/5.2-Prerequisite/s3_policy_success.png)
