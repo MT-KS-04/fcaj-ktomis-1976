@@ -33,7 +33,9 @@ Supports multiple languages such as Chinese or English
 ![Demo Screenshot]({{< baseurl >}}images/5-Workshop/5.5-Demo/image3.png)
 
 
-### Giao diện đặt bàn landing page ![Demo Screenshot]({{< baseurl >}}images/5-Workshop/5.5-Demo/image4.png)
+### Giao diện đặt bàn landing page
+
+![Demo Screenshot]({{< baseurl >}}images/5-Workshop/5.5-Demo/image4.png)
 
 
 Upon successful table booking 

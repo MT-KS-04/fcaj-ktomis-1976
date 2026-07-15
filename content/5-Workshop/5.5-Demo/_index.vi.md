@@ -33,7 +33,9 @@ Có thể chỉnh qua các ngôn ngữ như trung hoặc tiếng anh
 ![Demo Screenshot]({{< baseurl >}}images/5-Workshop/5.5-Demo/image3.png)
 
 
-### Giao diện đặt bàn landing page ![Demo Screenshot]({{< baseurl >}}images/5-Workshop/5.5-Demo/image4.png)
+### Giao diện đặt bàn landing page
+
+![Demo Screenshot]({{< baseurl >}}images/5-Workshop/5.5-Demo/image4.png)
 
 
 Khi đặt bàn thành công 
