@@ -6,123 +6,51 @@ chapter: false
 pre: " <b> 1.11. </b> "
 ---
 
-## General Information
+### Week 11 Goals:
 
-| Content | Details |
-| --- | --- |
-| Time | 13/07/2026 - 19/07/2026 |
-| Internship Week | Week 11 |
-| Phase | SmartMenu - Payments, reservations, and operating hours |
-| Role | Full-stack, responsible for backend; assisted with frontend |
-| Main Focus | Cash payment, Payments + refund, Reservations, Operating Hours |
+- Build cash payment functionality and manage payment history and refunds.
+- Build reservation functionality (owner-created and guest self-booked).
+- Build operating hours configuration for each day of the week.
+- In parallel: complete the CloudFront configuration for the frontend apps on AWS.
 
-## Week 11 Direction
+### Activities Implemented During the Week:
 
-With the ordering loop running, this week I am filling in the missing business logic to make it a real restaurant system: cash payments and payment history (including refunds), reservations (both owner-created and guest self-booking), and operating hours by day of the week. These parts aren't technically hard, but they have many business constraints that require care.
+| Day | Activities                                                                                                                                                                                                                                                                                                                                       | Start Date | Completion Date | Reference                                    |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | -------------------------------------------- |
+| 2   | - Designed the Payment model: <br>&emsp; + sessionId, restaurantId <br>&emsp; + total amount, status (completed / refunded) <br> - **Hands-on:** <br>&emsp; + Wrote `POST /orders/session/:id/cash-payment` <br>&emsp; + Aggregated open orders, computed the total, blocked repeat payment                                                      | 13/07/2026 | 13/07/2026      | <https://github.com/MT-KS-04/smart-menu-api> |
+| 3   | - Built the payment list and pagination: <br>&emsp; + Filter by status <br>&emsp; + Pagination (page, limit) <br> - **Hands-on:** <br>&emsp; + Wrote `GET /payments` <br>&emsp; + Standardized the paginated response for the frontend                                                                                                           | 14/07/2026 | 14/07/2026      | <https://github.com/MT-KS-04/smart-menu-api> |
+| 4   | - Built the refund functionality: <br>&emsp; + Only refund payments currently completed <br>&emsp; + Blocked double refunds <br> - **Hands-on:** <br>&emsp; + Wrote `POST /payments/:id/refund` <br> - **AWS:** <br>&emsp; + Configured a CloudFront behavior for `/api/*` pointing to the Lambda Function URL                                   | 15/07/2026 | 15/07/2026      | <https://000094.awsstudygroup.com>           |
+| 5   | - Designed the Reservation model and the owner-side booking function: <br>&emsp; + customerName, customerPhone, time, partySize <br>&emsp; + Pipeline: pending → confirmed → seated → completed <br> - **Hands-on:** <br>&emsp; + Wrote `POST /reservations`, `GET /reservations`, `PATCH /reservations/:id/status`                              | 16/07/2026 | 16/07/2026      | <https://github.com/MT-KS-04/smart-menu-api> |
+| 6   | - Built guest self-booking and operating hours: <br>&emsp; + Public route for guests to self-book (defaults to pending, awaiting approval) <br>&emsp; + OperatingHours model: isOpen, openTime, closeTime <br> - **Hands-on:** <br>&emsp; + Wrote `GET/PATCH /operating-hours` <br>&emsp; + Validated that `openTime` must be before `closeTime` | 17/07/2026 | 17/07/2026      | <https://github.com/MT-KS-04/smart-menu-api> |
+| 7   | - Completed the remaining public routes <br> - Coordinated with the frontend to wire up the payments, reservations, and booking form screens <br> - **AWS:** <br>&emsp; + Configured a CloudFront Function to handle SPA routing for the 3 apps <br>&emsp; + Re-synced the build to S3 and created invalidations                                 | 18/07/2026 | 18/07/2026      | <https://github.com/MT-KS-04/smart-menu-fe>  |
 
-## Week 11 Objectives
+### Achievements During Week 11:
 
-- Cash payment: close all open orders of a session and record a Payment.
-- Payments: list/paginate, refund a completed payment.
-- Reservations: owners create/list and change status; guests self-book via public route.
-- Operating Hours: configure open/close times by day (Mon-Sun).
+- Completed cash payment functionality:
+  - Aggregated all open orders for a session to compute the total
+  - Only counted orders that hadn't been cancelled
+  - Marked the orders as completed and recorded a Payment
+  - Blocked repeat payment for an already-paid session
 
-## Work Carried Out During the Week
+- Completed payment history management:
+  - Listed payments with status filtering
+  - Standard pagination (total, page, limit, data)
+  - Refund functionality for completed payments
+  - Blocked double refunds with a clear error message
 
-### Day 1 - Monday, 13/07/2026
+- Completed reservation functionality:
+  - Owners create, list, and approve reservations
+  - Guests self-book via a public route, defaulting to pending status awaiting approval
+  - Status pipeline: pending → confirmed → seated → completed, or cancelled / no_show
+  - Filtering by status and pagination
 
-Cash payment.
+- Completed operating hours configuration:
+  - Configured per day of the week (Monday - Sunday)
+  - Each day has an open/closed state and opening/closing time
+  - Validated valid hours (`openTime` must be before `closeTime`)
+  - Public route so the landing page/tablet can display opening hours
 
-- Designed `Payment` model: sessionId, restaurantId, total amount, status (completed / refunded), timestamp.
-- Wrote `POST /orders/session/:sessionId/cash-payment`: sums all open orders of a session, marks them as completed, and creates a Payment.
-- Had to ensure correctness here: excluding cancelled orders, and blocking a session from paying twice.
-
-```bash
-curl -X POST http://localhost:3000/api/v1/orders/session/$SESSION_ID/cash-payment
-```
-
-### Day 2 - Tuesday, 14/07/2026
-
-Payment list + pagination.
-
-- Wrote `GET /payments` with status filtering and pagination (page, limit).
-- Standardized pagination response (total, page, limit, data) to make table rendering easy for FE.
-- Added mock payment data to ensure pagination doesn't break on page 2.
-
-### Day 3 - Wednesday, 15/07/2026
-
-Refund.
-
-- Wrote `POST /payments/:id/refund`: only `completed` payments can be refunded, changes status to `refunded`.
-- Block double refunds: returns a clear error if already refunded.
-- Discussed whether to "re-open" orders upon refund; the team agreed the MVP will just mark the payment refunded without reverting orders - noted for future updates.
-
-### Day 4 - Thursday, 16/07/2026
-
-Reservations (owner side).
-
-- Designed `Reservation` model: customerName, customerPhone, time, partySize, tableNumber, notes, status.
-- Pipeline: `pending -> confirmed -> seated -> completed`, or `cancelled` / `no_show`.
-- Wrote `POST /reservations`, `GET /reservations` (status filter + pagination), `PATCH /reservations/:id/status`.
-
-```bash
-curl -X POST http://localhost:3000/api/v1/reservations \
-  -H "Authorization: Bearer $ACCESS_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"customerName":"Nguyen Van A","customerPhone":"0987654321","time":"2026-07-20T18:30:00.000Z","partySize":4,"tableNumber":5}'
-```
-
-### Day 5 - Friday, 17/07/2026
-
-Reservations (guest side) + Operating Hours.
-
-- Wrote public route `POST /public/restaurants/:restaurantId/reservations`: guests self-book, always created with `pending` status for owner approval.
-- Designed `OperatingHours`: each day has `isOpen`, `openTime`, `closeTime` in `HH:mm` format.
-- Wrote `GET /operating-hours` and `PATCH /operating-hours` (update one or multiple days).
-
-```bash
-curl -X PATCH http://localhost:3000/api/v1/operating-hours \
-  -H "Authorization: Bearer $ACCESS_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"monday":{"isOpen":true,"openTime":"09:00","closeTime":"21:00"}}'
-```
-
-Time validation bug: initially I didn't check that `openTime` must be before `closeTime`; entering them backward still saved. Added a time comparison check.
-
-### Day 6 - Saturday, 18/07/2026
-
-Remaining public routes + FE integration.
-
-- Added `GET /public/restaurants/:restaurantId/operating-hours` so landing/tablet apps can display open hours.
-- Integrated with FE: owner app built the payments screen (table + refund button) and reservations; landing app built the guest booking form.
-- Adjusted some date/time and currency formatting to align BE and FE.
-
-## Week Achievements
-
-- Cash payment sums session orders and records a Payment.
-- Payment listing/pagination and refunding (with double-refund blocking).
-- Full reservations: owner create/approve and guest public booking.
-- Operating hours by day, with valid time checks.
-- FE successfully integrated payments, reservations, and booking forms.
-
-## Difficulties Encountered
-
-- Cash payment required careful calculation of valid orders (skipping cancelled ones) and preventing double payments - more business logic than technical.
-- Forgot to validate `openTime < closeTime`, allowing reversed times to be saved. Had to add explicit checks.
-- Multiple status pipelines (order, reservation) are similar; had to cleanly separate each transition table to avoid mixing them up.
-
-## Lessons Learned
-
-- "Deceptively simple" features like payments and reservations are full of constraints. Coding them to run is fast, coding them correctly takes effort.
-- Input data validation (time, money, statuses) must be thorough; bugs like reversed times slip through easily.
-- When there are multiple similar pipelines, keeping them strictly separated from the start is less confusing than combining them for "brevity."
-
-## Week 12 Plan
-
-- Security review: rate limiting, re-checking permissions on owner routes.
-- Write tests for main flows.
-- Finalize and polish FE integration, prep for demo/deployment.
-
-## End-of-week Remarks
-
-After this week, most of the business logic is complete: ordering, payment, booking, and operating hours. The backend is almost fully formed; what's left is security checks, writing tests, and solidifying everything before the demo. It's starting to look like a real system rather than a collection of APIs.
+- Completed the AWS deployment configuration:
+  - Configured the CloudFront behavior for `/api/*` pointing to the Lambda Function URL
+  - Configured a CloudFront Function to handle SPA routing for the 3 apps (owner, tablet, landing)
+  - Synced the build to S3 and created invalidations after each update
