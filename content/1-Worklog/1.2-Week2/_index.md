@@ -6,172 +6,51 @@ chapter: false
 pre: " <b> 2.1. </b> "
 ---
 
-## General Information
+### Week 2 Goals:
 
-| Content         | Details                                                                           |
-| --------------- | --------------------------------------------------------------------------------- |
-| Duration        | 05/11/2026 - 05/17/2026                                                           |
-| Internship Week | Week 2                                                                            |
-| Phase           | Explore AWS Services                                                              |
-| Program         | First Cloud Journey                                                               |
-| Main Topics     | Databases, Lightsail, Auto Scaling, monitoring, DNS, and development environments |
-| Weekly Goals    | Master RDS, Lightsail, EC2 Auto Scaling, CloudWatch, Route 53, and Cloud9         |
+- Learn about relational databases on AWS with Amazon RDS.
+- Understand simplification solutions (Lightsail) and elasticity (Auto Scaling).
+- Know how to monitor systems with CloudWatch and manage DNS with Route 53.
 
-## Week 2 Learning Orientation
+### Activities Implemented During the Week:
 
-Continuing the **Explore AWS Services** phase, week 2 covered extended services based on the existing foundation: relational databases (RDS), simplified solutions (Lightsail), elasticity (EC2 Auto Scaling), monitoring (CloudWatch), DNS (Route 53), and cloud development environments (Cloud9). I still followed the approach of reading the easier topics first and leaving the ones that require more hands-on configuration for later, tackling a maximum of 1-2 services per day.
+| Day | Activities                                                                                                                                                                                                                                                                                                          | Start Date | Completion Date | Reference                                                                  |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | --------------- | -------------------------------------------------------------------------- |
+| 2   | - Explored Amazon RDS: <br>&emsp; + Supported database engines <br>&emsp; + Multi-AZ <br>&emsp; + Read Replica <br> - **Hands-on:** <br>&emsp; + Launched an RDS instance in a private subnet <br>&emsp; + Connected to RDS from an EC2 instance in the same VPC <br>&emsp; + Configured the Security Group for RDS | 11/05/2026 | 11/05/2026      | <https://000005.awsstudygroup.com>                                         |
+| 3   | - Explored Amazon Lightsail and its use cases <br> - Explored Lightsail Containers <br> - Compared Lightsail with EC2 <br> - **Hands-on:** <br>&emsp; + Created a Lightsail instance with a sample application                                                                                                      | 12/05/2026 | 12/05/2026      | <https://000045.awsstudygroup.com> <br> <https://000046.awsstudygroup.com> |
+| 4   | - Explored EC2 Auto Scaling: <br>&emsp; + Auto Scaling Group <br>&emsp; + Launch Template <br>&emsp; + Scaling policies (target tracking, step, scheduled) <br> - **Hands-on:** <br>&emsp; + Configured an ASG with min/max/desired capacity                                                                        | 13/05/2026 | 13/05/2026      | <https://000006.awsstudygroup.com>                                         |
+| 5   | - Explored Amazon CloudWatch: <br>&emsp; + Metrics, Alarms <br>&emsp; + Logs, Dashboards <br> - **Hands-on:** <br>&emsp; + Created an alarm for high CPU usage <br>&emsp; + Linked the alarm to Auto Scaling                                                                                                        | 14/05/2026 | 14/05/2026      | <https://000008.awsstudygroup.com>                                         |
+| 6   | - Explored Amazon Route 53: <br>&emsp; + Record types (A, CNAME, Alias) <br>&emsp; + Routing policies (simple, weighted, latency, failover) <br>&emsp; + Health checks <br> - **Hands-on:** <br>&emsp; + Created a hosted zone and configured records                                                               | 15/05/2026 | 15/05/2026      | <https://000010.awsstudygroup.com>                                         |
+| 7   | - Explored AWS Cloud9 (cloud-based IDE) <br> - **Hands-on:** <br>&emsp; + Created a Cloud9 environment <br>&emsp; + Used the integrated terminal to run AWS CLI commands <br> - Summarized Week 2 knowledge                                                                                                         | 16/05/2026 | 16/05/2026      | <https://000049.awsstudygroup.com>                                         |
 
-## Week 2 Learning Objectives
+### Achievements During Week 2:
 
-- Explore Amazon RDS (Relational Database Service).
-- Explore Amazon Lightsail and Lightsail Containers.
-- Explore Scaling Applications with EC2 Auto Scaling.
-- Explore Monitoring with Amazon CloudWatch.
-- Explore Hybrid DNS Management with Amazon Route 53.
-- Explore Cloud Development with AWS Cloud9.
+- Learned about managed databases on AWS with Amazon RDS:
+  - Supported database engines
+  - The role of Multi-AZ in ensuring availability
+  - The role of Read Replica in scaling reads
+  - Launched RDS in a private subnet and connected from EC2
 
-## Activities Implemented During the Week
+- Understood Amazon Lightsail as a simplification option:
+  - Cases where Lightsail is a better fit than EC2
+  - Lightsail Containers for running containers without infrastructure management
 
-### Day 1 - Monday, 05/11/2026
+- Learned the auto-scaling mechanism with EC2 Auto Scaling:
+  - Auto Scaling Group and Launch Template
+  - Distinguished the various scaling policy types
+  - Configured min/max/desired capacity
 
-Topic: **Database Essentials with Amazon RDS**.
-Implemented Activities:
+- Learned how to monitor systems with Amazon CloudWatch:
+  - Created and read Metrics
+  - Configured threshold-based Alarms
+  - Collected Logs
+  - Built Dashboards
+  - Linked alarms to Auto Scaling to trigger scaling actions
 
-- Read RDS documentation: supported database engines, the concepts of Multi-AZ and Read Replicas.
-- Followed a workshop to create an RDS instance in a private subnet.
-- Tested connecting to RDS from an EC2 instance within the same VPC to observe the connection flow.
+- Learned how to manage DNS with Amazon Route 53:
+  - Distinguished record types
+  - Understood routing policies and their use cases
+  - The role of health checks
 
-Retrieved the RDS endpoint via CLI and connected from EC2 (using PostgreSQL):
-
-```bash
-aws rds describe-db-instances \
-  --query "DBInstances[].Endpoint.Address" --output text
-```
-
-```
-intern-db.abcdefg123.ap-southeast-1.rds.amazonaws.com
-```
-
-```bash
-psql -h intern-db.abcdefg123.ap-southeast-1.rds.amazonaws.com -U postgres -d postgres
-```
-
-The first time, I tried connecting from my personal machine, and it hung and timed out. I later realized that RDS was in a private subnet, meaning I had to SSH into an EC2 instance in the same VPC before connecting. Moreover, the RDS Security Group had to allow port 5432 for the EC2 Security Group.
-
-Achieved Results:
-
-- Understood how RDS differs from manually installing a database on EC2.
-- Grasped the meaning of Multi-AZ (redundancy) and Read Replicas (read scalability), albeit at a theoretical level.
-- Memorized that accessing a private RDS requires routing through a machine in the VPC and cannot be connected directly from the outside.
-
-### Day 2 - Tuesday, 05/12/2026
-
-Topic: **Simplified Computing with Amazon Lightsail** and **Container Deployment with Amazon Lightsail Containers**.
-Implemented Activities:
-
-- Read about Lightsail and when it's a better fit than EC2 (small apps, desire for simplicity).
-- Followed a guide to create a Lightsail instance with a sample application.
-- Read more about Lightsail Containers to know how to run containers without worrying about infrastructure.
-
-Achieved Results:
-
-- Understood when to choose Lightsail over EC2.
-- Knew of the existence of Lightsail Containers and the problems they solve.
-
-### Day 3 - Wednesday, 05/13/2026
-
-Topic: **Scaling Applications with EC2 Auto Scaling**.
-Implemented Activities:
-
-- Read about Auto Scaling Groups and Launch Templates.
-- Explored scaling policies: target tracking, step scaling, scheduled scaling.
-- Followed a workshop to configure an ASG with min/max/desired capacities to observe how it scales.
-
-Achieved Results:
-
-- Understood the concept behind Auto Scaling and why it helps save costs.
-- Gained a preliminary understanding of the different scaling policies.
-
-### Day 4 - Thursday, 05/14/2026
-
-Topic: **Monitoring with Amazon CloudWatch**.
-Implemented Activities:
-
-- Read about CloudWatch: Metrics, Alarms, Logs, Dashboards.
-- Followed a guide to create a CPU high alert alarm.
-- Learned how this alarm integrates with Auto Scaling to trigger scaling actions.
-
-Achieved Results:
-
-- Knew what CloudWatch monitors and how to create an alarm.
-- Understood the connection between CloudWatch and Auto Scaling.
-
-### Day 5 - Friday, 05/15/2026
-
-Topic: **Hybrid DNS Management with Amazon Route 53**.
-Implemented Activities:
-
-- Read about Route 53: record types (A, CNAME, Alias) and routing policies.
-- Learned about health checks and routing methods (simple, weighted, latency, failover).
-- Reviewed a guide on creating a hosted zone and pointing a record to an AWS resource.
-
-Achieved Results:
-
-- Understood Route 53's role in domain management.
-- Gained a basic understanding of routing policies and when to use them.
-
-### Day 6 - Saturday, 05/16/2026
-
-Topic: **Cloud Development with AWS Cloud9**.
-Implemented Activities:
-
-- Read about Cloud9 as a cloud-based IDE.
-- Created a Cloud9 environment and opened the integrated terminal to run a few AWS CLI commands.
-- Summarized the knowledge from the entire week.
-
-Achieved Results:
-
-- Successfully tried Cloud9 and found it convenient because AWS CLI was pre-installed.
-- Understood the benefits of coding in an environment close to AWS.
-
-## Week 2 Knowledge Summary
-
-| Knowledge Group | Learned Content                                   |
-| --------------- | ------------------------------------------------- |
-| Database        | Amazon RDS, Multi-AZ, Read Replica                |
-| Simplified      | Amazon Lightsail, Lightsail Containers            |
-| Scalability     | EC2 Auto Scaling, Launch Template, scaling policy |
-| Monitoring      | CloudWatch Metrics, Alarms, Logs, Dashboards      |
-| DNS             | Route 53, record, routing policy, health check    |
-| Development     | AWS Cloud9                                        |
-
-## Achievements During the Week
-
-- Successfully created and connected to RDS from EC2 following the workshop.
-- Learned about Lightsail as a simpler alternative to EC2.
-- Configured EC2 Auto Scaling and CloudWatch alarms.
-- Understood how Route 53 manages DNS.
-- Got familiar with the Cloud9 environment.
-
-## Challenges Encountered
-
-- When trying to connect to RDS from EC2, I got stuck for a while. Later, I realized the RDS Security Group and subnet group didn't allow the connection.
-- After configuring Auto Scaling, it didn't scale as expected in the tutorial. I had to review the alarm and policy to realize the threshold I set was inappropriate.
-- The various Route 53 routing policies had similar names, so I initially confused them. I had to write them down based on their purposes to remember.
-
-## Lessons Learned
-
-- I learned that keeping databases in private subnets is definitely safer, but it requires careful network configuration rather than just "creating and running."
-- Auto Scaling and CloudWatch essentially go hand in hand; you must understand one to use the other.
-- Lightsail is great for small workloads, but flexibility requires reverting to EC2 — there is no one-size-fits-all solution.
-
-## Plan for Week 3
-
-- Explore Amazon DynamoDB and Amazon ElastiCache.
-- Explore Amazon CloudFront and Lambda@Edge.
-- Explore the Networking on AWS Workshop.
-- Practice Building Highly Available Web Applications.
-
-## End of Week Review
-
-Week 2 introduced more complex topics, especially configuration-heavy ones like RDS and Auto Scaling. I found that reading first and then practicing through workshops suits me best, as many gaps in understanding only become apparent during hands-on practice.
+- Got familiar with the AWS Cloud9 development environment and its benefits when coding in an environment with AWS CLI pre-installed.
+- Understood the relationships between services when combined: RDS in a private subnet, EC2 access via Security Group, Auto Scaling coordinating with CloudWatch.
