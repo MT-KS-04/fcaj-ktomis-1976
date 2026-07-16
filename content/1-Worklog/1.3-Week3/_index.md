@@ -6,209 +6,52 @@ chapter: false
 pre: " <b> 3.1. </b> "
 ---
 
-## General Information
+### Week 3 Goals:
 
-| Content         | Details                                                                                     |
-| --------------- | ------------------------------------------------------------------------------------------- |
-| Duration        | 05/18/2026 - 05/24/2026                                                                     |
-| Internship Week | Week 3                                                                                      |
-| Phase           | Explore AWS Services (Advanced)                                                             |
-| Program         | First Cloud Journey                                                                         |
-| Main Topics     | NoSQL, caching, CDN, edge computing, advanced networking, and highly available applications |
-| Weekly Goals    | Master DynamoDB, ElastiCache, CloudFront, Lambda@Edge, advanced networking, and HA web apps |
+- Learn about NoSQL databases with Amazon DynamoDB and caching with ElastiCache.
+- Understand content delivery with CloudFront and edge computing with Lambda@Edge.
+- Reinforce advanced networking knowledge and build highly available web applications.
 
-## Week 3 Learning Orientation
+### Activities Implemented During the Week:
 
-Week 3 concludes the **Explore AWS Services** phase with heavier workshops: NoSQL databases (DynamoDB), caching (ElastiCache), content delivery (CloudFront), edge computing (Lambda@Edge), advanced networking, and a comprehensive exercise on highly available web applications. These topics were noticeably more difficult than the previous two weeks, so I spent more time reading carefully and left the two heaviest tasks for the weekend.
+| Day | Activities                                                                                                                                                                                                                                                                                          | Start Date | Completion Date | Reference                          |
+| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | --------------- | ---------------------------------- |
+| 2   | - Explored Amazon DynamoDB: <br>&emsp; + Table, Item, Attribute <br>&emsp; + Partition key, Sort key <br>&emsp; + Capacity mode (On-Demand / Provisioned) <br>&emsp; + GSI, LSI <br> - **Hands-on:** <br>&emsp; + Created a table with AWS CLI <br>&emsp; + Performed put-item, get-item operations | 18/05/2026 | 18/05/2026      | <https://000060.awsstudygroup.com> |
+| 3   | - Explored Amazon ElastiCache: <br>&emsp; + Redis and Memcached engines <br>&emsp; + Cache-aside model <br>&emsp; + The role of caching in reducing database load <br> - **Hands-on:** <br>&emsp; + Created an ElastiCache cluster                                                                  | 19/05/2026 | 19/05/2026      | <https://000061.awsstudygroup.com> |
+| 4   | - Explored Amazon CloudFront: <br>&emsp; + Edge Location <br>&emsp; + Distribution, Origin <br>&emsp; + Cache behavior, TTL <br> - **Hands-on:** <br>&emsp; + Created a distribution with an S3 origin <br>&emsp; + Created an invalidation to refresh the cache                                    | 20/05/2026 | 20/05/2026      | <https://000094.awsstudygroup.com> |
+| 5   | - Explored Lambda@Edge: <br>&emsp; + The concept of edge computing <br>&emsp; + The 4 trigger types (viewer/origin request & response) <br> - **Hands-on:** <br>&emsp; + Reviewed an example function that customizes the response                                                                  | 21/05/2026 | 21/05/2026      | <https://000130.awsstudygroup.com> |
+| 6   | - Networking on AWS Workshop: <br>&emsp; + Reviewed VPC, subnet, routing <br>&emsp; + Advanced networking scenarios <br> - **Hands-on:** <br>&emsp; + Configured networking following the workshop guide                                                                                            | 22/05/2026 | 22/05/2026      | <https://000092.awsstudygroup.com> |
+| 7   | - Building Highly Available Web Applications: <br>&emsp; + Combined multiple AZs <br>&emsp; + Auto Scaling and load balancing <br> - **Hands-on:** <br>&emsp; + Built a highly available web architecture <br> - Summarized the Explore phase knowledge                                             | 23/05/2026 | 23/05/2026      | <https://000101.awsstudygroup.com> |
 
-## Week 3 Learning Objectives
+### Achievements During Week 3:
 
-- Explore NoSQL Database Essentials with Amazon DynamoDB.
-- Explore In-Memory Caching with Amazon ElastiCache.
-- Explore Content Delivery with Amazon CloudFront.
-- Explore Edge Computing with CloudFront and Lambda@Edge.
-- Explore Networking on AWS Workshop.
-- Explore Building Highly Available Web Applications.
+- Learned about the NoSQL database Amazon DynamoDB:
+  - Distinguished partition key and sort key
+  - Understood On-Demand and Provisioned capacity modes
+  - The role of GSI and LSI when querying by other fields
+  - Manipulated data via CLI: create-table, put-item, get-item
+  - Understood that table design must start from the access pattern
 
-## Activities Implemented During the Week
+- Understood the role of caching with Amazon ElastiCache:
+  - Distinguished Redis and Memcached
+  - The cache-aside model
+  - How caching reduces database load and speeds up queries
 
-### Day 1 - Monday, 05/18/2026
+- Learned how to distribute content with Amazon CloudFront:
+  - The role of the Edge Location network
+  - Configured distribution, origin, cache behavior
+  - Understood TTL and how to use invalidation to refresh content
 
-Topic: **NoSQL Database Essentials with Amazon DynamoDB**.
-Implemented Activities:
+- Understood the concept of edge computing with Lambda@Edge:
+  - The significance of running code at Edge Locations
+  - Distinguished the 4 trigger types and their use cases
 
-- Read about DynamoDB: tables, items, partition keys, and sort keys.
-- Learned about capacity modes (On-Demand and Provisioned) and GSI/LSI indexes.
-- Followed a workshop to create a table and tested inserting, reading, and deleting items.
+- Reinforced and advanced AWS networking knowledge through the Networking Workshop.
 
-I created a table via CLI with the partition key `UserId`:
+- Built a highly available web application, understanding how to combine:
+  - Multiple Availability Zones
+  - Auto Scaling
+  - Load balancing
+  - Monitoring
 
-```bash
-aws dynamodb create-table \
-  --table-name Users \
-  --attribute-definitions AttributeName=UserId,AttributeType=S \
-  --key-schema AttributeName=UserId,KeyType=HASH \
-  --billing-mode PAY_PER_REQUEST
-```
-
-Added and retrieved an item:
-
-```bash
-aws dynamodb put-item --table-name Users \
-  --item '{"UserId": {"S": "u001"}, "Name": {"S": "Nam"}}'
-
-aws dynamodb get-item --table-name Users \
-  --key '{"UserId": {"S": "u001"}}'
-```
-
-```json
-{
-  "Item": {
-    "Name": { "S": "Nam" },
-    "UserId": { "S": "u001" }
-  }
-}
-```
-
-Once I tried `get-item` with `Name` as the key instead of `UserId` and got an error:
-
-```
-An error occurred (ValidationException): The provided key element does not match the schema
-```
-
-At this point, I realized that DynamoDB only allows querying by defined keys. To search by other fields, you must consider GSIs from the table design phase.
-
-Achieved Results:
-
-- Understood that DynamoDB requires a completely different mindset than relational databases; it requires thinking about access patterns.
-- Was able to create and manipulate data in a table at a basic level.
-- Memorized the `put-item` / `get-item` command structures and the lesson of properly choosing keys from the start.
-
-### Day 2 - Tuesday, 05/19/2026
-
-Topic: **In-Memory Caching with Amazon ElastiCache**.
-Implemented Activities:
-
-- Read about ElastiCache and the two engines: Redis and Memcached.
-- Learned why caching reduces database load and speeds up queries (cache-aside model).
-- Reviewed a tutorial on creating a cluster to visualize how it works.
-
-Achieved Results:
-
-- Understood the role of caching and when to use ElastiCache.
-- Distinguished between Redis and Memcached at a high level.
-
-### Day 3 - Wednesday, 05/20/2026
-
-Topic: **Content Delivery with Amazon CloudFront**.
-Implemented Activities:
-
-- Read about CloudFront and the Edge Location network.
-- Learned about distributions, origins, cache behaviors, and TTL.
-- Followed a workshop to create a distribution with an S3 bucket (created in week 1) as the origin.
-
-After modifying a file on S3, the CloudFront page still showed the old version. I created an invalidation to clear the cache:
-
-```bash
-aws cloudfront create-invalidation \
-  --distribution-id E123ABC456DEF --paths "/*"
-```
-
-```json
-{
-  "Invalidation": {
-    "Status": "InProgress",
-    "InvalidationBatch": {
-      "Paths": { "Quantity": 1, "Items": ["/*"] }
-    }
-  }
-}
-```
-
-Waited for the status to change to `Completed`, and then the new content appeared. That's when I understood why "modifying a file didn't update the web page" — the TTL was still effective at the Edge.
-
-Achieved Results:
-
-- Understood that CloudFront distributes content closer to users to reduce latency.
-- Successfully created a simple distribution following the guide.
-- Memorized the `create-invalidation` command to force cache updates after modifying content.
-
-### Day 4 - Thursday, 05/21/2026
-
-Topic: **Edge Computing with CloudFront and Lambda@Edge**.
-Implemented Activities:
-
-- Read about Lambda@Edge and the concept of running code directly at Edge Locations.
-- Learned about the 4 trigger types: viewer request/response, origin request/response.
-- Reviewed an example of a small function customizing responses to understand how it's applied.
-
-Achieved Results:
-
-- Grasped the concept of edge computing and the role of Lambda@Edge.
-- Gained a preliminary understanding of the 4 trigger types.
-
-### Day 5 - Friday, 05/22/2026
-
-Topic: **Networking on AWS Workshop**.
-Implemented Activities:
-
-- Reread and expanded on the networking section: VPCs, subnets, and routing in more complex scenarios than week 1.
-- Followed the step-by-step workshop to reinforce networking knowledge.
-
-Achieved Results:
-
-- Became more confident with networking concepts compared to when I first learned about VPCs.
-
-### Day 6 - Saturday, 05/23/2026
-
-Topic: **Building Highly Available Web Applications**.
-Implemented Activities:
-
-- Read a comprehensive guide on building highly available web apps.
-- Followed instructions to combine multiple AZs, Auto Scaling, and load balancing.
-- Summarized the knowledge from the entire week and the Explore phase.
-
-Achieved Results:
-
-- Visualized how the previously learned services integrate into a highly available system.
-- Saw a clearer connection between the disparate concepts learned earlier.
-
-## Week 3 Knowledge Summary
-
-| Knowledge Group   | Learned Content                                       |
-| ----------------- | ----------------------------------------------------- |
-| NoSQL Database    | DynamoDB, partition/sort key, capacity mode, GSI/LSI  |
-| Caching           | ElastiCache, Redis, Memcached, cache-aside            |
-| Content Delivery  | CloudFront, distribution, origin, cache behavior, TTL |
-| Edge Computing    | Lambda@Edge, trigger types                            |
-| Networking        | Networking on AWS Workshop                            |
-| High Availability | Building Highly Available Web Applications            |
-
-## Achievements During the Week
-
-- Successfully created and manipulated data in DynamoDB.
-- Understood the role of ElastiCache and how to create a cluster.
-- Created a CloudFront distribution and understood the purpose of Lambda@Edge.
-- Reinforced advanced networking concepts.
-- Learned how to build a highly available web app following a workshop.
-
-## Challenges Encountered
-
-- DynamoDB was the most frustrating part this week. Having a relational table mindset caused me to incorrectly design partition keys, forcing me to rethink based on query patterns.
-- After caching with CloudFront, I modified a file and it didn't update. It turned out to be the TTL, and I had to perform an invalidation to see the changes.
-- The highly available web app tutorial had too many components. I couldn't remember everything after one read and had to draw diagrams to keep track.
-
-## Lessons Learned
-
-- I realized DynamoDB isn't just a matter of changing names from SQL; it requires thinking about how data will be queried.
-- Caching speeds things up but can be confusing if you don't understand TTL, so it requires careful configuration.
-- Comprehensive exercises at the end of the Explore phase helped connect the fragmented concepts, revealing the bigger picture.
-
-## Plan for Week 4
-
-- Transition to the Migrate to AWS phase: VM Import/Export, DMS + SCT, Elastic Disaster Recovery.
-- Begin the Optimize - Operations phase: Systems Manager, Session Manager, Tags & Resource Groups.
-
-## End of Week Review
-
-Week 3 was the heaviest among the first three weeks, especially DynamoDB and the highly available web app tutorial. However, after finishing the Explore phase, I feel I have a fairly comprehensive view of foundational services, enough to confidently move to the Migrate and Optimize phases.
+- Completed the Explore AWS Services section, gaining an overall view of the foundational services.
