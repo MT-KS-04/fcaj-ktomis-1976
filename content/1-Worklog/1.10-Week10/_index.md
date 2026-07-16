@@ -6,120 +6,55 @@ chapter: false
 pre: " <b> 1.10. </b> "
 ---
 
-## General Information
+### Week 10 Goals:
 
-| Content | Details |
-| --- | --- |
-| Time | 06/07/2026 - 12/07/2026 |
-| Internship Week | Week 10 |
-| Phase | SmartMenu - Guest session, public menu view, and ordering |
-| Role | Full-stack, responsible for backend; assisted with frontend |
-| Main Focus | Guest session via QR, public menu view, orders + status pipeline |
+- Build guest sessions via QR scan, without needing an account.
+- Build a public menu with allergen warnings by severity level (red/yellow/green).
+- Build ordering and manage orders through a status pipeline.
+- In parallel: sync the frontend to S3 and verify via CloudFront.
 
-## Week 10 Direction
+### Activities Implemented During the Week:
 
-This week is for the **guests** - the other half of the product. Guests scan a QR on the table to open a session (no account registration needed), view the published menu, declare their allergies so the system warns them about safe/unsafe dishes, and then place orders. On the owner's side, they receive the orders and push the order status along a fixed pipeline. This is when the isolated modules from previous weeks start connecting.
+| Day | Activities                                                                                                                                                                                                                                                                                                              | Start Date | Completion Date | Reference                                    |
+| --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | --------------- | -------------------------------------------- |
+| 2   | - Designed the Session model: <br>&emsp; + restaurantId, tableNumber <br>&emsp; + allergens, preferences <br>&emsp; + status, expiresAt <br> - **Hands-on:** <br>&emsp; + Wrote `POST /sessions`, verifying `qrSecret` before creating a session                                                                        | 06/07/2026 | 06/07/2026      | <https://github.com/MT-KS-04/smart-menu-api> |
+| 3   | - Built session expiration and allergen declaration: <br>&emsp; + Sessions auto-expire after inactivity <br>&emsp; + Guests declare allergens and preferences <br> - **Hands-on:** <br>&emsp; + Wrote `PATCH /sessions/:id/allergens`                                                                                   | 07/07/2026 | 07/07/2026      | <https://github.com/MT-KS-04/smart-menu-api> |
+| 4   | - Built the public menu with allergen warnings: <br>&emsp; + Matched each item's allergens against the guest's declaration <br>&emsp; + Red label (contains) / yellow (may contain) / green (safe) <br> - **Hands-on:** <br>&emsp; + Wrote `GET /public/restaurants/:id/menu`                                           | 08/07/2026 | 08/07/2026      | <https://github.com/MT-KS-04/smart-menu-api> |
+| 5   | - Designed the Order model and ordering function: <br>&emsp; + sessionId, items, customerNotes, status <br>&emsp; + Verified items belong to a published, available menu <br> - **Hands-on:** <br>&emsp; + Wrote `POST /orders` for guests <br> - **AWS:** <br>&emsp; + Synced the frontend build to S3 (`aws s3 sync`) | 09/07/2026 | 09/07/2026      | <https://000057.awsstudygroup.com>           |
+| 6   | - Built the order status pipeline: <br>&emsp; + `pending` → `confirmed` → `preparing` → `ready` → `served` → `completed` <br>&emsp; + Blocked backward or skipped status transitions <br> - **Hands-on:** <br>&emsp; + Wrote `PATCH /orders/:id/status` <br>&emsp; + Wrote `GET /orders` and `GET /orders/session/:id`  | 10/07/2026 | 10/07/2026      | <https://github.com/MT-KS-04/smart-menu-api> |
+| 7   | - Coordinated with the frontend to wire up the tablet and owner apps <br> - **AWS:** <br>&emsp; + Created a CloudFront distribution with an S3 origin <br>&emsp; + Created invalidations to refresh new content <br>&emsp; + Verified the end-to-end flow on AWS                                                        | 11/07/2026 | 11/07/2026      | <https://000094.awsstudygroup.com>           |
 
-## Week 10 Objectives
+### Achievements During Week 10:
 
-- Guest session: create a session by scanning QR (verify qrSecret), auto-expire when inactive.
-- Declare allergies/preferences tied to the session.
-- Public menu view: return the published menu with matching allergen tags (red/yellow/green).
-- Orders: guests place orders, owners manage orders through the `pending -> ... -> completed` pipeline.
+- Completed guest session functionality:
+  - Guests scan the table QR to open a session, no account registration needed
+  - `qrSecret` is verified before creating a session; a revoked QR can't be used
+  - Sessions auto-expire after a period of inactivity
+  - Guests declare allergens and preferences tied to the session
 
-## Work Carried Out During the Week
+- Completed the public menu with allergen warnings:
+  - Returns the published menu with its list of items
+  - Matches each item's allergens against the guest's declaration
+  - Applies warning labels at 3 levels:
+    - Red: the item contains something the guest is allergic to
+    - Yellow: the item may contain it
+    - Green: the item is safe
 
-### Day 1 - Monday, 06/07/2026
+- Completed ordering for guests:
+  - Order by session, no login required
+  - Per-item notes and general order notes
+  - Verified items must belong to a published, currently available menu
 
-Create guest session.
+- Completed order management through a status pipeline:
+  - One-directional pipeline: pending → confirmed → preparing → ready → served → completed
+  - Blocked backward or skipped status transitions
+  - Owners view and process their restaurant's orders
+  - Guests track their own order status
 
-- Designed the `Session` model: restaurantId, tableNumber, allergens, preferences, status, expiration time.
-- Wrote `POST /sessions`: receives restaurantId + tableNumber + qrSecret, verifies the secret matches the table before creating a session.
-- This connects to Week 8's QR logic: if the owner revoked it, the old secret fails verification, preventing session creation.
+- Deployed and verified the project on AWS:
+  - Synced the frontend build to S3
+  - Created a CloudFront distribution with an S3 origin
+  - Created invalidations to refresh content after each build
+  - Verified the end-to-end flow on AWS
 
-```bash
-curl -X POST http://localhost:3000/api/v1/sessions \
-  -H "Content-Type: application/json" \
-  -d '{"restaurantId":"'"$RESTAURANT_ID"'","tableNumber":5,"qrSecret":"'"$QR_SECRET"'"}'
-```
-
-### Day 2 - Tuesday, 07/07/2026
-
-Session expiration + declaring allergies.
-
-- Added logic for sessions to auto-expire after a period of inactivity (save `expiresAt`, check on usage).
-- Wrote `PATCH /sessions/:sessionId/allergens` for guests to declare allergies and preferences.
-- Considered using Mongo's TTL index for expiration, but temporarily checking manually against `expiresAt` for easier control; noted for future optimization.
-
-### Day 3 - Wednesday, 08/07/2026
-
-Public menu view + allergen tagging.
-
-- Wrote `GET /public/restaurants/:restaurantId/menu?sessionId=...&lang=vi`: returns published menu + items.
-- Match tagging logic: compares the item's allergens with the guest's declared allergens in the session -> tags it red (contains allergen), yellow (may contain), or green (safe).
-- This is the best part: Week 9's allergen data is finally being used in a real scenario.
-
-Had a bug: when a session hadn't declared allergies yet, all items were green - which is correct, but initially I left it as null, causing a crash. Defaulting to an empty array fixed it.
-
-### Day 4 - Thursday, 09/07/2026
-
-Ordering (guest) + Order model.
-
-- Designed `Order` model: sessionId, list of items (menuItemId, quantity, notes), customerNotes, status, restaurantId.
-- Wrote `POST /orders` for guests (no auth required, scoped by sessionId).
-- Validation: ordered items must belong to the currently published menu and be `available`.
-
-```bash
-curl -X POST http://localhost:3000/api/v1/orders \
-  -H "Content-Type: application/json" \
-  -d '{"sessionId":"'"$SESSION_ID"'","items":[{"menuItemId":"'"$ITEM_ID"'","quantity":2,"notes":"Less onions"}],"customerNotes":"Very spicy"}'
-```
-
-### Day 5 - Friday, 10/07/2026
-
-Status pipeline + owner order management.
-
-- Finalized a one-way pipeline: `pending -> confirmed -> preparing -> ready -> served -> completed`, or `cancelled`.
-- Wrote `PATCH /orders/:orderId/status` for owners, blocking backward or skipped status jumps.
-- Wrote `GET /orders` (owners view restaurant orders) and `GET /orders/session/:sessionId` (guests poll their own orders).
-
-Initially I allowed free status changes, but realized it was dangerous (a completed order going back to pending), so I wrote a valid transition table to only allow moving forward.
-
-### Day 6 - Saturday, 11/07/2026
-
-FE tablet + owner integration.
-
-- Connected the tablet app (guest ordering screen) with the session -> menu -> order flow.
-- Connected the owner app with the order list screen and status change buttons.
-- Fixed a few time formatting and status name issues to match FE's i18n.
-- Tested an end-to-end loop: scan QR -> view menu -> place order -> owner pushes status -> guest sees update.
-
-## Week Achievements
-
-- Guests can create a session via QR with secret verification and expiration.
-- Allergy declaration and public menu view with red/yellow/green warning tags.
-- Ordering and tracking orders by session.
-- Owners manage orders via a one-way pipeline with controlled status transitions.
-- Successfully ran an end-to-end loop between the tablet, owner, and backend.
-
-## Difficulties Encountered
-
-- Allergy tag logic crashed when the session hadn't declared anything due to a null value; fixed by defaulting to an empty array.
-- A free-form status pipeline is a recipe for messy data; had to implement a strict transition table for peace of mind.
-- Testing end-to-end requires many variables (restaurantId, qrSecret, sessionId, itemId), so I wrote a small script to set variables for easier typing.
-
-## Lessons Learned
-
-- Data prepared last week (allergens) "came alive" this week - showing that designing properly early on makes integration later very smooth.
-- Business statuses should strictly constrain the workflow direction; never trust the API caller to change it correctly.
-- Having a working end-to-end flow early helped me and the FE spot API contract mismatches much faster.
-
-## Week 11 Plan
-
-- Cash payment: mark open orders of a session as completed, record Payment.
-- Payments: list, paginate, refund.
-- Reservations and Operating Hours.
-
-## End-of-week Remarks
-
-This week the product actually worked in a "full loop," which is quite exciting. Seeing a guest scan a QR and the order pop up on the owner's side made the effort of laying the foundation in previous weeks visibly pay off. Still have payments and reservations to complete the business logic.
+- Ran a complete scenario: scan QR → view menu → order → owner processes → guest sees updates.
