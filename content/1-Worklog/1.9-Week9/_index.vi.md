@@ -6,131 +6,48 @@ chapter: false
 pre: " <b> 1.9. </b> "
 ---
 
-## Thông tin chung
+### Mục tiêu Tuần 9:
 
-| Nội dung      | Chi tiết                                                        |
-| ------------- | -------------------------------------------------------------- |
-| Thời gian     | 29/06/2026 - 05/07/2026                                        |
-| Tuần thực tập | Tuần 9                                                         |
-| Giai đoạn     | SmartMenu - Menu, món ăn và nhãn dị ứng                        |
-| Vai trò       | Full-stack, phụ trách backend; FE có hỗ trợ từ thành viên nhóm |
-| Chủ đề chính  | Menu có phiên bản, CRUD menu item, allergen tagging            |
+- Xây dựng module Menu có quản lý phiên bản (draft → published → archived).
+- Xây dựng CRUD món ăn (MenuItem) với phân loại, giá và trạng thái.
+- Xây dựng chức năng gắn nhãn dị ứng (allergen tagging) theo chuẩn 14 loại của EU.
+- Song song: cấu hình S3 và Lambda để chuẩn bị triển khai dự án lên AWS.
 
-## Định hướng tuần 9
+### Các công việc thực hiện trong tuần:
 
-Tuần này làm phần "ruột" của sản phẩm: menu và món ăn. Điểm mình đắn đo nhiều nhất là **quản lý phiên bản menu** - khi owner đổi menu thì menu cũ không nên biến mất mà nên được lưu lại, và chỉ một menu được "published" cho khách xem tại một thời điểm. Ngoài ra làm luôn phần gắn nhãn dị ứng cho món, vì đây là điểm ăn tiền của SmartMenu so với menu giấy thường.
+| Ngày | Công việc                                                                                                                                                                                                                                                                                              | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo                                                         |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------ | --------------- | -------------------------------------------------------------------------- |
+| 2    | - Thiết kế vòng đời menu: <br>&emsp; + `draft` → `published` → `archived` <br>&emsp; + Mỗi nhà hàng chỉ một menu published <br> - Thiết kế model Menu: name, imageUrl, status, version                                                                                                                 | 29/06/2026   | 29/06/2026      | <https://github.com/MT-KS-04/smart-menu-api>                               |
+| 3    | - Xây dựng chức năng tạo và publish menu: <br>&emsp; + `POST /menus/upload` tạo menu draft <br>&emsp; + `POST /menus/:id/publish` tự archive menu cũ <br> - **Thực hành:** <br>&emsp; + Xử lý ràng buộc chỉ một menu published tại một thời điểm                                                       | 30/06/2026   | 30/06/2026      | <https://github.com/MT-KS-04/smart-menu-api>                               |
+| 4    | - Xây dựng CRUD menu và menu item: <br>&emsp; + `GET /menus`, `PATCH`, `DELETE` <br>&emsp; + Model MenuItem: nameVi, price, category, descVi, status <br> - **Thực hành:** <br>&emsp; + Viết `POST /menus/:id/items` và `GET /menus/:id/items`                                                         | 01/07/2026   | 01/07/2026      | <https://github.com/MT-KS-04/smart-menu-api>                               |
+| 5    | - Hoàn thiện sửa/xóa món ăn: <br>&emsp; + Đổi giá, trạng thái (available / sold_out) <br>&emsp; + Thêm data mẫu để frontend render thử <br> - **AWS:** <br>&emsp; + Tạo S3 bucket chứa bản build frontend <br>&emsp; + Cấu hình IAM policy cấp quyền truy cập S3                                       | 02/07/2026   | 02/07/2026      | <https://000057.awsstudygroup.com> <br> <https://000002.awsstudygroup.com> |
+| 6    | - Xây dựng chức năng allergen tagging: <br>&emsp; + Chốt 14 loại dị ứng chuẩn EU vào constants <br>&emsp; + Mức độ: contains / may_contain <br>&emsp; + Cờ `verified` (owner xác nhận) <br> - **Thực hành:** <br>&emsp; + Viết `PATCH /menus/:id/items/:itemId/allergens`                              | 03/07/2026   | 03/07/2026      | <https://github.com/MT-KS-04/smart-menu-api>                               |
+| 7    | - Rà soát validation và sửa lỗi: <br>&emsp; + Giá không âm, category không rỗng <br>&emsp; + Allergen phải nằm trong 14 loại cho phép <br>&emsp; + Xử lý item mồ côi khi xóa menu <br> - **AWS:** <br>&emsp; + Deploy thử backend qua Lambda Function URL <br>&emsp; + Kiểm tra API hoạt động trên AWS | 04/07/2026   | 04/07/2026      | <https://000022.awsstudygroup.com>                                         |
 
-## Mục tiêu tuần 9
+### Kết quả đạt được Tuần 9:
 
-- Model `Menu` với vòng đời draft -> published -> archived.
-- Khi publish menu mới thì tự archive menu đang published.
-- CRUD `MenuItem`: tên (vi), giá, category, mô tả, status.
-- Allergen tagging: gắn danh sách nhãn dị ứng, mức độ (contains / may_contain), nguồn (AI gợi ý / owner xác nhận).
+- Hoàn thành module Menu với quản lý phiên bản:
+  - Vòng đời rõ ràng: draft (đang soạn) → published (khách xem) → archived (menu cũ)
+  - Publish menu mới tự động archive menu đang published
+  - Đảm bảo ràng buộc chỉ một menu published tại một thời điểm
+  - Menu cũ được lưu lại thay vì bị ghi đè
 
-## Nội dung thực hiện trong tuần
+- Hoàn thành CRUD món ăn (MenuItem):
+  - Thêm, sửa, xóa món
+  - Quản lý theo tên, giá, phân loại (category), mô tả
+  - Đổi trạng thái available / sold_out
 
-### Ngày 1 - Thứ hai, 29/06/2026
+- Hoàn thành chức năng gắn nhãn dị ứng (allergen tagging):
+  - Chuẩn hóa 14 loại dị ứng theo chuẩn EU vào constants dùng chung
+  - Phân biệt mức độ: contains (chứa) và may_contain (có thể chứa)
+  - Cờ `verified` để owner xác nhận
+  - Ràng buộc allergen phải nằm trong danh sách cho phép
 
-Thiết kế vòng đời menu.
+- Nắm được kinh nghiệm khi làm việc với MongoDB:
+  - Không có ràng buộc khóa ngoại như SQL nên phải tự dọn quan hệ khi xóa
+  - Tách data dùng chung ra constants để frontend và backend nhất quán
 
-- Vẽ state của menu: `draft` (đang soạn) -> `published` (khách xem) -> `archived` (menu cũ).
-- Thiết kế model `Menu`: name, imageUrl, status, restaurantId, version.
-- Quyết định: mỗi nhà hàng nhiều menu nhưng chỉ một `published` tại một thời điểm.
-
-### Ngày 2 - Thứ ba, 30/06/2026
-
-Tạo menu + publish.
-
-- Viết `POST /menus/upload` tạo menu mới ở trạng thái draft.
-- Viết `POST /menus/:menuId/publish`: đặt menu này thành published, đồng thời tìm menu đang published trước đó archive lại.
-- Đây là chỗ mình phải cẩn thận: nếu publish A trong khi B đang published mà quên archive B thì có 2 menu published cùng lúc. Viết lại thành thao tác 2 bước trong cùng luồng để tránh.
-
-```bash
-curl -X POST http://localhost:3000/api/v1/menus/$MENU_ID/publish \
-  -H "Authorization: Bearer $ACCESS_TOKEN"
-```
-
-### Ngày 3 - Thứ tư, 01/07/2026
-
-CRUD menu + item.
-
-- Viết `GET /menus` (liệt kê mọi phiên bản), `PATCH /menus/:menuId`, `DELETE /menus/:menuId`.
-- Model `MenuItem`: nameVi, price, category, descVi, status (available / sold_out), menuId.
-- Viết `POST /menus/:menuId/items` và `GET /menus/:menuId/items`.
-
-```bash
-curl -X POST http://localhost:3000/api/v1/menus/$MENU_ID/items \
-  -H "Authorization: Bearer $ACCESS_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"nameVi":"Phở Bò","price":65000,"category":"Món chính","descVi":"Phở bò truyền thống","status":"available"}'
-```
-
-### Ngày 4 - Thứ năm, 02/07/2026
-
-Sửa/xóa item + chỉnh data.
-
-- Viết `PATCH /menus/:menuId/items/:itemId` (đổi giá/status/mô tả) và `DELETE`.
-- Test đổi món sang `sold_out`:
-
-```bash
-curl -X PATCH http://localhost:3000/api/v1/menus/$MENU_ID/items/$ITEM_ID/status \
-  -H "Authorization: Bearer $ACCESS_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"price":70000,"status":"sold_out"}'
-```
-
-- Ngồi thêm ít data mẫu (mấy món phở, cơm, nước) để FE có cái render thử thay vì màn hình trắng.
-
-### Ngày 5 - Thứ sáu, 03/07/2026
-
-Allergen tagging.
-
-- Chốt danh sách 14 loại dị ứng theo chuẩn EU (gluten, đậu phộng, sữa, trứng, hải sản...) đưa vào constants.
-- Thiết kế: mỗi item có mảng `allergenTags`, mỗi tag gồm `allergen`, `confidence` (contains / may_contain), và cờ `verified` (owner đã xác nhận chưa).
-- Viết `PATCH /menus/:menuId/items/:itemId/allergens`.
-
-```bash
-curl -X PATCH http://localhost:3000/api/v1/menus/$MENU_ID/items/$ITEM_ID/allergens \
-  -H "Authorization: Bearer $ACCESS_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"allergenTags":[{"allergen":"gluten","confidence":"contains"},{"allergen":"soy","confidence":"may_contain"}],"verified":true}'
-```
-
-Ý tưởng để dành: sau này có thể cho AI gợi ý allergen từ tên/mô tả món (nguồn = AI), rồi owner xác nhận (verified = true). Tuần này mình làm phần dữ liệu và API trước, chưa nối AI.
-
-### Ngày 6 - Thứ bảy, 04/07/2026
-
-Rà lỗi và ghép FE menu.
-
-- Rà lỗi validation: giá không âm, category không rỗng, allergen phải nằm trong 14 loại cho phép.
-- Sửa một bug: xóa menu mà chưa xóa item con, để lại item mồ côi. Thêm bước xóa item theo menuId khi xóa menu.
-- Ghép với FE: bạn làm màn hình quản lý menu của app owner, mình chỉnh vài field tên cho khớp và bổ sung message lỗi rõ hơn.
-
-## Kết quả đạt được trong tuần
-
-- Menu có vòng đời draft/published/archived, publish tự archive menu cũ.
-- CRUD menu và menu item đầy đủ.
-- Allergen tagging với mức độ và cờ verified, ràng buộc trong 14 loại chuẩn.
-- Có data mẫu để FE render và test.
-
-## Khó khăn gặp phải
-
-- Vụ "chỉ một menu published" làm mình phải viết cẩn thận, suýt để lọt trường hợp 2 menu published cùng lúc.
-- Bug item mồ côi khi xóa menu - nhắc mình là Mongo không tự ràng buộc khóa ngoại như SQL, phải tự dọn quan hệ.
-- Danh sách 14 allergen ban đầu mình gõ tay dễ sai chính tả, phải đưa vào constants dùng chung để FE và BE thống nhất.
-
-## Bài học rút ra
-
-- Quản lý phiên bản (versioning) tuy làm phức tạp hơn nhưng đúng nhu cầu thật của nhà hàng - không nên vì ngại mà cho sửa đè thẳng.
-- Không có ràng buộc khóa ngoại thì mình phải tự lo tính toàn vẹn dữ liệu, nhất là lúc xóa.
-- Tách data dùng chung (như danh sách allergen) ra constants giúp cả hệ thống nhất quán, đỡ lệch giữa FE và BE.
-
-## Kế hoạch tuần 10
-
-- Guest session: khách quét QR tạo session (không cần tài khoản), khai báo dị ứng.
-- Public menu view: khách xem menu published kèm nhãn cảnh báo dị ứng (đỏ/vàng/xanh).
-- Orders: khách đặt món, owner quản lý đơn theo pipeline trạng thái.
-
-## Nhận xét cuối tuần
-
-Đây là tuần nội dung nặng nhất tới giờ vì menu là trái tim của sản phẩm. Làm xong phần versioning và allergen mình thấy sản phẩm bắt đầu có "chất riêng" chứ không chỉ là CRUD thường. Phần AI gợi ý allergen mình note lại để làm sau khi luồng chính chạy ổn.
+- Bước đầu triển khai dự án lên AWS:
+  - Tạo S3 bucket để chứa bản build frontend
+  - Cấu hình IAM policy cấp quyền truy cập S3 (`s3:ListBucket` trên bucket ARN, các action object-level trên `/*` ARN)
+  - Deploy thử backend qua Lambda Function URL và kiểm tra API hoạt động
